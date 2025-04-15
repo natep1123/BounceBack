@@ -22,6 +22,7 @@ export default function RegisterForm() {
     const trimmedEmail = email.trim();
     const trimmedPassword = password.trim();
 
+    // Check for empty fields
     if (!trimmedUsername || !trimmedEmail || !trimmedPassword) {
       setError("All fields are required.");
       return;
@@ -47,15 +48,11 @@ export default function RegisterForm() {
       if (response.status === 201) {
         const form = e.target;
         form.reset();
-        router.push("/"); // Redirect to login; consider auto-sign-in if desired
+        router.push("/");
       } else {
         setError(response.data?.message || "Registration failed.");
       }
     } catch (error) {
-      console.error(
-        "Error during registration:",
-        error.response?.data || error
-      );
       setError(
         error.response?.data?.message ||
           "An error occurred during registration."

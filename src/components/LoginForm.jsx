@@ -16,6 +16,7 @@ export default function LoginForm() {
     e.preventDefault();
     setError("");
 
+    // Check for empty fields
     const trimmedEmail = email.trim();
     const trimmedPassword = password.trim();
 
@@ -30,10 +31,9 @@ export default function LoginForm() {
       redirect: false,
     });
 
+    // Simplified error handling due to nextauth v5 error complexity...
+    /* NextAuth v5 wraps custom error messages from the `authorize` function into generic `CallbackRouteError` or `Configuration` errors, making it difficult to display specific messages like "No user found with this email" in the client-side `LoginForm.js`. */
     if (result?.error) {
-      // Log for debugging
-      console.log("Sign-in error:", result.error);
-      // Simplified error handling
       setError("Incorrect email or password.");
     } else if (result?.ok) {
       router.push("/start");
