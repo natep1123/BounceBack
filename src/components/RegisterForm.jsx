@@ -18,15 +18,19 @@ export default function RegisterForm() {
     setError("");
 
     // Client-side validation
-    if (!username.trim() || !email.trim() || !password.trim()) {
+    const trimmedUsername = username.trim();
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+
+    if (!trimmedUsername || !trimmedEmail || !trimmedPassword) {
       setError("All fields are required.");
       return;
     }
-    if (!/\S+@\S+\.\S+/.test(email)) {
+    if (!/\S+@\S+\.\S+/.test(trimmedEmail)) {
       setError("Please enter a valid email.");
       return;
     }
-    if (password.length < 6) {
+    if (trimmedPassword.length < 6) {
       setError("Password must be at least 6 characters.");
       return;
     }
@@ -34,16 +38,16 @@ export default function RegisterForm() {
     // Try to register the user
     try {
       const response = await axios.post("/api/register", {
-        username: username.trim(),
-        email: email.trim(),
-        password,
+        username: trimmedUsername,
+        email: trimmedEmail,
+        password: trimmedPassword,
       });
 
       // Ensure success status
       if (response.status === 201) {
         const form = e.target;
         form.reset();
-        router.push("/");
+        router.push("/"); // Redirect to login; consider auto-sign-in if desired
       } else {
         setError(response.data?.message || "Registration failed.");
       }
@@ -52,13 +56,12 @@ export default function RegisterForm() {
         "Error during registration:",
         error.response?.data || error
       );
-      // Handle error response
       setError(
         error.response?.data?.message ||
           "An error occurred during registration."
       );
     }
-  }; // end handleSubmit
+  };
 
   return (
     <div className="grid place-items-center h-screen bg-gray-900">
@@ -74,7 +77,7 @@ export default function RegisterForm() {
           />
           <input
             onChange={(e) => setEmail(e.target.value)}
-            type="text"
+            type="email"
             placeholder="Email"
             className="p-3 rounded-md border border-gray-600 bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-300"
           />
@@ -84,7 +87,10 @@ export default function RegisterForm() {
             placeholder="Password"
             className="p-3 rounded-md border border-gray-600 bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-300"
           />
-          <button className="bg-pink-600 text-white font-bold rounded-md px-6 py-3 hover:bg-pink-500 transition-colors cursor-pointer">
+          <button
+            type="submit"
+            className="bg-pink-600 text-white font-bold rounded-md px-6 py-3 hover:bg-pink-500 transition-colors cursor-pointer"
+          >
             Register
           </button>
 

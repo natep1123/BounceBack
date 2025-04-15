@@ -16,15 +16,26 @@ export default function LoginForm() {
     e.preventDefault();
     setError("");
 
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+
+    if (!trimmedEmail || !trimmedPassword) {
+      setError("Email and password are required.");
+      return;
+    }
+
     const result = await signIn("credentials", {
-      email,
-      password,
+      email: trimmedEmail,
+      password: trimmedPassword,
       redirect: false,
     });
 
     if (result?.error) {
-      setError(result.error);
-    } else {
+      // Log for debugging
+      console.log("Sign-in error:", result.error);
+      // Simplified error handling
+      setError("Incorrect email or password.");
+    } else if (result?.ok) {
       router.push("/start");
     }
   };
@@ -47,7 +58,10 @@ export default function LoginForm() {
             placeholder="Password"
             className="p-3 rounded-md border border-gray-600 bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-300"
           />
-          <button className="bg-pink-600 text-white font-bold rounded-md px-6 py-3 hover:bg-pink-500 transition-colors cursor-pointer">
+          <button
+            type="submit"
+            className="bg-pink-600 text-white font-bold rounded-md px-6 py-3 hover:bg-pink-500 transition-colors cursor-pointer"
+          >
             Login
           </button>
           {error && (
