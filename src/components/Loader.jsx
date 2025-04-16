@@ -1,6 +1,22 @@
-import React from "react";
+// components/Loader.jsx
+import React, { useState, useEffect } from "react";
 
-const Loader = () => {
+const Loader = ({ isLoading }) => {
+  const [minTimeElapsed, setMinTimeElapsed] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) {
+      setMinTimeElapsed(false); // Reset when loading starts
+      const timer = setTimeout(() => {
+        setMinTimeElapsed(true);
+      }, 1250);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading]);
+
+  if (!isLoading && minTimeElapsed) return null;
+
   return (
     <div className="flex justify-center items-center w-full h-16 bg-gray-900">
       <div className="relative w-32 h-8">
