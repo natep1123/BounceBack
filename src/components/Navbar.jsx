@@ -28,6 +28,11 @@ export default function NavBar() {
           </Link>
         </li>
         <li>
+          <Link href="/about/game" className="text-orange-300">
+            About
+          </Link>
+        </li>
+        <li>
           <button
             onClick={handleLogout}
             className="text-orange-300 cursor-pointer"

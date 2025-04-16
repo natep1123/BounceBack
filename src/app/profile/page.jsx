@@ -2,13 +2,13 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import Header from "@/components/Header";
 
-export default async function Leaderboard() {
+export default async function Profile() {
   // Server-side session check
   const session = await auth();
   if (!session) {
     redirect("/"); // Redirect to login if not authenticated
   }
-  console.log(session);
+
   return (
     <>
       <Header display="navbar" title="BounceBack!" />
