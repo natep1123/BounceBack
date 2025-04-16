@@ -13,9 +13,9 @@ export default async function AboutGame() {
   return (
     <>
       <Header display="navbar" title="BounceBack!" />
-      <main className="flex flex-col items-center min-h-screen bg-gray-900 mt-4">
-        <h2 className="text-3xl font-bold text-white">About the Game</h2>
-        <div className="w-full max-w-2xl p-8 mt-4 bg-gray-800 rounded-lg shadow-lg shadow-pink-500/20">
+      <main className="flex flex-col items-center min-h-screen bg-gray-900">
+        <h2>About the Game</h2>
+        <div className="w-full max-w-2xl p-8 bg-gray-800 rounded-lg shadow-lg shadow-pink-500/20">
           <div className="text-gray-200 space-y-4">
             <p>
               BounceBack! is a modern twist on the classic Pong game, designed

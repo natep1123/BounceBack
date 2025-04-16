@@ -51,7 +51,7 @@ export default function LoginForm() {
           loading ? "opacity-0" : "opacity-100"
         }`}
       >
-        <h1 className="text-2xl font-bold my-4 text-gray-200">Login</h1>
+        <h2>Login</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             onChange={(e) => setEmail(e.target.value)}

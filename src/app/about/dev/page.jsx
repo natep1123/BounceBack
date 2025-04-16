@@ -13,9 +13,9 @@ export default async function AboutDev() {
   return (
     <>
       <Header display="navbar" title="BounceBack!" />
-      <main className="flex flex-col items-center min-h-screen bg-gray-900 mt-4">
-        <h2 className="text-3xl font-bold text-white">About the Developer</h2>
-        <div className="w-full max-w-2xl p-8 mt-4 bg-gray-800 rounded-lg shadow-lg shadow-pink-500/20">
+      <main className="flex flex-col items-center min-h-screen bg-gray-900">
+        <h2>About the Developer</h2>
+        <div className="w-full max-w-2xl p-8 bg-gray-800 rounded-lg shadow-lg shadow-pink-500/20">
           <div className="text-gray-200 space-y-5">
             <p>
               Hi, I'm Nate Perry, a passionate developer who loves building
@@ -31,7 +31,7 @@ export default async function AboutDev() {
               from you!
             </p>
             <p className="italic">— Nate Perry</p>
-            <h3 className="text-2xl font-bold text-white mb-4">Contact Me:</h3>
+            <p className="font-bold text-white mb-2">Contact Me:</p>
             <ul className="flex flex-col gap-2">
               <li>
                 <a
@@ -40,7 +40,7 @@ export default async function AboutDev() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Github
+                  GitHub
                 </a>
               </li>
               <li>

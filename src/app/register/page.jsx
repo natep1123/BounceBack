@@ -11,7 +11,7 @@ export default async function Register() {
   }
   return (
     <>
-      <Header display="title" title="Welcome to BounceBack!" />
+      <Header display="welcome" />
       <main>
         <RegisterForm />
       </main>

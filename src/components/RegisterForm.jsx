@@ -73,7 +73,7 @@ export default function RegisterForm() {
           loading ? "opacity-0" : "opacity-100"
         }`}
       >
-        <h1 className="text-2xl font-bold my-4 text-gray-200">Register</h1>
+        <h2>Register</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             onChange={(e) => setUsername(e.target.value)}

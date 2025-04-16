@@ -15,9 +15,7 @@ export default async function StartScreen() {
     <>
       <Header display="navbar" title="BounceBack!" />
       <main className="flex flex-col items-center min-h-screen bg-gray-900">
-        <h2 className="mt-2 mb-2 text-2xl font-bold text-white">
-          Start Screen
-        </h2>
+        <h2>Start a New Game</h2>
         <span className="text-white italic">
           BounceBack is a single-player twist on the classic Pong game. Use your
           paddles to bounce the ball back and score points!

@@ -18,7 +18,7 @@ export default function ClientGame() {
 
   return (
     <>
-      <h2 className="text-2xl font-bold text-white mt-4">Score: {score}</h2>
+      <h2>Score: {score}</h2>
       <div className="flex flex-col items-center rounded-lg shadow-lg p-6 w-full max-w-md">
         {count > 0 ? (
           <div className="flex items-center justify-center h-[300px] w-[65vw] bg-gray-800 border-2 border-pink-600 rounded-lg">

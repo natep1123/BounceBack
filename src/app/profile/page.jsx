@@ -9,13 +9,14 @@ export default async function Profile() {
     redirect("/"); // Redirect to login if not authenticated
   }
 
+  const username = session.user.username;
+  const email = session.user.email;
+
   return (
     <>
       <Header display="navbar" title="BounceBack!" />
       <main className="flex flex-col items-center h-screen">
-        <h2 className="text-2xl font-bold text-white mb-4">
-          {session.user.username}
-        </h2>
+        <h2>{username}'s Profile</h2>
         <div className="flex flex-col items-center rounded-lg shadow-lg p-6 w-full max-w-md">
           <p className="text-white">User content goes here.</p>
         </div>

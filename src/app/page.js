@@ -11,7 +11,7 @@ export default async function Home() {
   }
   return (
     <>
-      <Header display="title" title="Welcome to BounceBack!" />
+      <Header display="welcome" />
       <main>
         <LoginForm />
       </main>
