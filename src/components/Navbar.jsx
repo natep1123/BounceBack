@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 export default function NavBar() {
   const handleLogout = async () => {
@@ -23,7 +24,7 @@ export default function NavBar() {
         </li>
         <li>
           <Link href="/start" className="text-orange-300">
-            New Game
+            Start
           </Link>
         </li>
         <li>

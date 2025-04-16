@@ -1,5 +1,7 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+import ClientGame from "@/components/ClientGame";
+import Header from "@/components/Header";
 
 export default async function Game() {
   // Server-side session check
@@ -9,11 +11,9 @@ export default async function Game() {
   }
   return (
     <>
-      <main className="flex flex-col items-center min-h-screen">
-        <h2 className="text-2xl font-bold text-white mb-4">Game Screen</h2>
-        <div className="flex flex-col items-center rounded-lg shadow-lg p-6 w-full max-w-md">
-          <p className="text-white">Game content here.</p>
-        </div>
+      <Header display="game" />
+      <main className="flex flex-col items-center min-h-screen bg-gray-900">
+        <ClientGame />
       </main>
     </>
   );
