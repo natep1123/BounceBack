@@ -1,6 +1,5 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import LogoutButton from "@/components/Logout-Button";
 import Header from "@/components/Header";
 
 export default async function StartScreen() {
@@ -21,7 +20,6 @@ export default async function StartScreen() {
             your paddles to bounce the ball back and score points!
           </p>
         </div>
-        <LogoutButton />
       </main>
     </>
   );

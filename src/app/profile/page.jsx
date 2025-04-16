@@ -13,7 +13,7 @@ export default async function Leaderboard() {
     <>
       <Header display="navbar" title="BounceBack!" />
       <main className="flex flex-col items-center h-screen">
-        <h2 className="text-4xl font-bold text-white mb-4">
+        <h2 className="text-2xl font-bold text-white mb-4">
           {session.user.username}
         </h2>
         <div className="flex flex-col items-center rounded-lg shadow-lg p-6 w-full max-w-md">
