@@ -2,13 +2,20 @@ import Navbar from "./Navbar";
 
 const Header = ({ display, title }) => {
   return (
-    <header className="py-4 border-b-2 border-pink-600">
-      {display === "title" && title && (
-        <h1 className="text-2xl font-bold text-gray-200 text-center pb-2">
-          {title}
+    <header className="border-b-2 border-pink-600">
+      {display === "title" && (
+        <h1 className="py-4 text-2xl font-bold text-gray-200 text-center">
+          Welcome to BounceBack!
         </h1>
       )}
-      {display === "navbar" && <Navbar />}
+      {display === "navbar" && (
+        <>
+          <h1 className="pt-4 text-2xl font-bold text-gray-200 text-center pb-4">
+            BounceBack!
+          </h1>
+          <Navbar />
+        </>
+      )}
     </header>
   );
 };

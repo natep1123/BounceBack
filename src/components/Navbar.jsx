@@ -9,7 +9,7 @@ export default function NavBar() {
   };
 
   return (
-    <nav>
+    <nav className="py-4 border-t-2 border-pink-600">
       <ul className="flex items-center justify-around">
         <li>
           <Link href="/profile" className="text-orange-300">

@@ -10,7 +10,7 @@ export default async function Leaderboard() {
   }
   return (
     <>
-      <Header display="navbar" />
+      <Header display="navbar" title="BounceBack!" />
       <main className="flex flex-col items-center h-screen">
         <h2 className="text-4xl font-bold text-white mb-4">Leaderboard</h2>
         <div className="flex flex-col items-center rounded-lg shadow-lg p-6 w-full max-w-md">

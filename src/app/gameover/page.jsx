@@ -12,13 +12,15 @@ export default async function GameOver() {
 
   return (
     <>
-      <Header display="navbar" />
-      <main>
-        <h2>Game Over!</h2>
-        <p>
-          BounceBack is a single-player twist on the classic Pong game. Use your
-          paddles to bounce the ball back and score points!
-        </p>
+      <Header display="navbar" title="BounceBack!" />
+      <main className="flex flex-col items-center min-h-screen">
+        <h2 className="text-2xl font-bold text-white mb-4">Game Over!</h2>
+        <div className="flex flex-col items-center rounded-lg shadow-lg p-6 w-full max-w-md">
+          <p className="text-white">
+            BounceBack is a single-player twist on the classic Pong game. Use
+            your paddles to bounce the ball back and score points!
+          </p>
+        </div>
         <LogoutButton />
       </main>
     </>

@@ -9,7 +9,7 @@ const Loader = ({ isLoading }) => {
       setMinTimeElapsed(false); // Reset when loading starts
       const timer = setTimeout(() => {
         setMinTimeElapsed(true);
-      }, 1250);
+      }, 1500);
 
       return () => clearTimeout(timer);
     }

@@ -11,7 +11,7 @@ export default async function Leaderboard() {
   console.log(session);
   return (
     <>
-      <Header display="navbar" />
+      <Header display="navbar" title="BounceBack!" />
       <main className="flex flex-col items-center h-screen">
         <h2 className="text-4xl font-bold text-white mb-4">
           {session.user.username}
