@@ -1,9 +1,15 @@
 import LogoutButton from "@/components/Logout-Button";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
-export default function Game() {
+export default async function Game() {
+  // Server-side session check
+  const session = await auth();
+  if (!session) {
+    redirect("/"); // Redirect to login if not authenticated
+  }
   return (
     <main>
-      <h1>Game Page!</h1>
       <LogoutButton />
     </main>
   );

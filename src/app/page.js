@@ -1,4 +1,5 @@
-import LoginForm from "../components/LoginForm";
+import LoginForm from "@/components/LoginForm";
+import Header from "@/components/Header";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
@@ -9,8 +10,11 @@ export default async function Home() {
     redirect("/start");
   }
   return (
-    <main>
-      <LoginForm />
-    </main>
+    <>
+      <Header display="title" title="Welcome to BounceBack!" />
+      <main>
+        <LoginForm />
+      </main>
+    </>
   );
 }

@@ -1,5 +1,6 @@
 import RegisterForm from "../../components/RegisterForm";
 import { auth } from "@/auth";
+import Header from "@/components/Header";
 import { redirect } from "next/navigation";
 
 export default async function Register() {
@@ -8,5 +9,12 @@ export default async function Register() {
   if (session) {
     redirect("/start");
   }
-  return <RegisterForm />;
+  return (
+    <>
+      <Header display="title" title="Welcome to BounceBack!" />
+      <main>
+        <RegisterForm />
+      </main>
+    </>
+  );
 }
