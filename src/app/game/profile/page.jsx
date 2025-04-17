@@ -6,7 +6,7 @@ export default async function Profile() {
   // Server-side session check
   const session = await auth();
   if (!session) {
-    redirect("/"); // Redirect to login if not authenticated
+    redirect("/");
   }
 
   const username = session.user.username;
@@ -14,7 +14,7 @@ export default async function Profile() {
 
   return (
     <>
-      <Header display="navbar" title="BounceBack!" />
+      <Header display="navbar" />
       <main className="flex flex-col items-center h-screen">
         <h2>{username}'s Profile</h2>
         <div className="flex flex-col items-center rounded-lg shadow-lg p-6 w-full max-w-md">

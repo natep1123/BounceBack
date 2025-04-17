@@ -8,12 +8,12 @@ export default async function StartScreen() {
   // Server-side session check
   const session = await auth();
   if (!session) {
-    redirect("/"); // Redirect to login if not authenticated
+    redirect("/");
   }
 
   return (
     <>
-      <Header display="navbar" title="BounceBack!" />
+      <Header display="navbar" />
       <main className="flex flex-col items-center min-h-screen bg-gray-900">
         <h2>Start a New Game</h2>
         <span className="text-white italic">
@@ -21,7 +21,7 @@ export default async function StartScreen() {
           paddles to bounce the ball back and score points!
         </span>
         <BallAnimation />
-        <Link href="/game">
+        <Link href="/game/play">
           <button className="mt-4 px-4 py-2 text-white bg-pink-600 border-2 border-gray-800 rounded-lg cursor-pointer">
             Start!
           </button>

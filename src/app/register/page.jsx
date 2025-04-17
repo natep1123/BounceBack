@@ -7,7 +7,7 @@ export default async function Register() {
   // Server-side check before rendering client component
   const session = await auth();
   if (session) {
-    redirect("/start");
+    redirect("/game/start");
   }
   return (
     <>

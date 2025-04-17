@@ -12,7 +12,7 @@ export default async function AboutDev() {
 
   return (
     <>
-      <Header display="navbar" title="BounceBack!" />
+      <Header display="navbar" />
       <main className="flex flex-col items-center min-h-screen bg-gray-900">
         <h2>About the Developer</h2>
         <div className="w-full max-w-2xl p-8 bg-gray-800 rounded-lg shadow-lg shadow-pink-500/20">
@@ -27,8 +27,8 @@ export default async function AboutDev() {
               playing it as much as I enjoyed building it.
             </p>
             <p>
-              Got questions or feedback? Feel free to reach out—I'd love to hear
-              from you!
+              Got questions, feedback or collaboration ideas? Feel free to reach
+              out, I'd love to hear from you!
             </p>
             <p className="italic">— Nate Perry</p>
             <p className="font-bold text-white mb-2">Contact Me:</p>
@@ -56,7 +56,7 @@ export default async function AboutDev() {
             </ul>
           </div>
         </div>
-        <Link className="mt-4 text-orange-400 font-medium" href="/about/game">
+        <Link className="mt-4 text-orange-400 font-medium" href="/game/about">
           About the Game
         </Link>
       </main>

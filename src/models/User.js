@@ -20,9 +20,5 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Explicitly define indexes for clarity and future customization
-userSchema.index({ username: 1 }, { unique: true }); // Unique index for username lookups
-userSchema.index({ email: 1 }, { unique: true }); // Unique index for email lookups
-
 const User = mongoose.models.User || mongoose.model("User", userSchema);
 export default User;

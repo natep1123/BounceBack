@@ -6,12 +6,12 @@ export default async function GameOver() {
   // Server-side session check
   const session = await auth();
   if (!session) {
-    redirect("/"); // Redirect to login if not authenticated
+    redirect("/");
   }
 
   return (
     <>
-      <Header display="navbar" title="BounceBack!" />
+      <Header display="navbar" />
       <main className="flex flex-col items-center min-h-screen">
         <h2>Game Over!</h2>
         <div className="flex flex-col items-center rounded-lg shadow-lg p-6 w-full max-w-md">

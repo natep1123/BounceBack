@@ -12,7 +12,7 @@ export default async function AboutGame() {
 
   return (
     <>
-      <Header display="navbar" title="BounceBack!" />
+      <Header display="navbar" />
       <main className="flex flex-col items-center min-h-screen bg-gray-900">
         <h2>About the Game</h2>
         <div className="w-full max-w-2xl p-8 bg-gray-800 rounded-lg shadow-lg shadow-pink-500/20">
@@ -34,7 +34,10 @@ export default async function AboutGame() {
             <p>Thank you for playing!</p>
           </div>
         </div>
-        <Link className="mt-4 text-orange-400 font-medium" href="/about/dev">
+        <Link
+          className="mt-4 text-orange-400 font-medium"
+          href="/game/about/dev"
+        >
           About the Developer
         </Link>
       </main>

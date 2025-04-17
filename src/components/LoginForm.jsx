@@ -1,4 +1,3 @@
-// components/LoginForm.jsx
 "use client";
 
 import Link from "next/link";
@@ -39,7 +38,7 @@ export default function LoginForm() {
       setError("Incorrect email or password.");
       setLoading(false);
     } else if (result?.ok) {
-      router.push("/start");
+      router.push("/game/start");
     }
   };
 

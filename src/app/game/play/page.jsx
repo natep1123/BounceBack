@@ -7,7 +7,7 @@ export default async function Game() {
   // Server-side session check
   const session = await auth();
   if (!session) {
-    redirect("/"); // Redirect to login if not authenticated
+    redirect("/");
   }
   return (
     <>

@@ -6,11 +6,11 @@ export default function BallAnimation() {
   const ballSize = 12;
   const boxRef = useRef(null);
   const ballRef = useRef(null);
-  const velocity = useRef({ dx: 2, dy: 1 }); // Reduced velocity for smoother motion
+  const velocity = useRef({ dx: 3, dy: 1.5 });
   const position = useRef({ x: 0, y: 0 });
   const animationFrameId = useRef(0);
   const boxSize = useRef({ width: 0, height: 0 });
-  const lastFrameTime = useRef(performance.now()); // Track frame time
+  const lastFrameTime = useRef(performance.now());
 
   // Measure box size
   useEffect(() => {
@@ -113,8 +113,8 @@ export default function BallAnimation() {
           style={{
             width: `${ballSize}px`,
             height: `${ballSize}px`,
-            willChange: "transform", // Optimize animation
-            boxShadow: "0 0 4px rgba(0, 0, 0, 0.3)", // Optional: subtle shadow for visibility
+            willChange: "transform",
+            boxShadow: "0 0 4px rgba(0, 0, 0, 0.3)",
           }}
         />
       </div>
