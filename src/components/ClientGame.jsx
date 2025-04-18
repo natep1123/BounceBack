@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export default function ClientGame() {
   const [count, setCount] = useState(3);
   const [score, setScore] = useState(0);
-  const [isGameOver, setIsGameOver] = useState(false);
   const [isGameStarted, setIsGameStarted] = useState(false);
   const ballSize = 12;
   const fieldRef = useRef(null);
@@ -16,6 +16,7 @@ export default function ClientGame() {
   const velocity = useRef({ dx: 3, dy: 1.5 });
   const lastUpdateTime = useRef(0);
   const animationFrameId = useRef(0);
+  const router = useRouter();
 
   // Countdown effect
   useEffect(() => {
@@ -24,6 +25,8 @@ export default function ClientGame() {
         setCount((prev) => prev - 1);
       }, 1000);
       return () => clearInterval(timer);
+    } else {
+      setIsGameStarted(true); // Set gameStart to true when countdown reaches 0
     }
   }, [count]);
 
@@ -39,7 +42,7 @@ export default function ClientGame() {
     updateFieldSize();
     window.addEventListener("resize", updateFieldSize);
     return () => window.removeEventListener("resize", updateFieldSize);
-  }, [count]);
+  }, [isGameStarted]);
 
   // Set initial ball position
   useEffect(() => {
@@ -126,10 +129,17 @@ export default function ClientGame() {
     return () => cancelAnimationFrame(animationFrameId.current);
   }, [count, fieldSize]);
 
+  // Handle game over
+  const handleGameOver = () => {
+    cancelAnimationFrame(animationFrameId.current);
+    localStorage.setItem("gameScore", score.toString());
+    router.push("/game/over");
+  };
+
   return (
     <>
       <h2>Score: {score}</h2>
-      <div className="flex flex-col items-center mt-4">
+      <div className="flex flex-col items-center mt-2">
         {count > 0 ? (
           <div className="flex items-center justify-center h-[300px] w-[65vw] bg-gray-800 border-2 border-pink-600 rounded-lg">
             <span className="text-6xl font-bold text-white">{count}</span>
@@ -152,11 +162,12 @@ export default function ClientGame() {
           </div>
         )}
       </div>
-      <Link href="/game/over">
-        <button className="mt-4 px-4 py-2 text-white bg-pink-600 border-2 border-gray-800 rounded-lg cursor-pointer">
-          End Game
-        </button>
-      </Link>
+      <button
+        className="mt-4 px-4 py-2 text-white bg-pink-600 border-2 border-gray-800 rounded-lg cursor-pointer"
+        onClick={handleGameOver}
+      >
+        End Game
+      </button>
     </>
   );
 }
