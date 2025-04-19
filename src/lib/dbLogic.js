@@ -35,3 +35,20 @@ export async function getHighscores() {
     console.error("Error fetching high scores:", error);
   }
 }
+
+// Function to get top 10 all-time top scores
+export async function getLeaderboard() {
+  try {
+    const response = await axios.get("/api/leaderboard");
+    return {
+      scores: response.data.scores || [],
+      message: response.data.message || "All-time top scores retrieved",
+    };
+  } catch (error) {
+    console.error("Error fetching leaderboard scores:", error);
+    return {
+      scores: [],
+      message: "Failed to retrieve leaderboard scores",
+    };
+  }
+}

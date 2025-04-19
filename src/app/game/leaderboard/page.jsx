@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import Header from "@/components/Header";
+import LeaderboardCard from "@/components/LeaderboardCard";
 
 export default async function Leaderboard() {
   // Server-side session check
@@ -13,9 +14,7 @@ export default async function Leaderboard() {
       <Header display="navbar" />
       <main className="flex flex-col items-center h-screen">
         <h2>Leaderboard</h2>
-        <div className="flex flex-col items-center rounded-lg shadow-lg p-6 w-full max-w-md">
-          <p className="text-white">Leaderboard content goes here.</p>
-        </div>
+        <LeaderboardCard />
       </main>
     </>
   );
