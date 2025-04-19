@@ -30,6 +30,11 @@ export default function RegisterForm() {
       setLoading(false);
       return;
     }
+    if (trimmedUsername.length < 3 || trimmedUsername.length > 20) {
+      setError("Username must be between 3 and 20 characters.");
+      setLoading(false);
+      return;
+    }
     if (!/\S+@\S+\.\S+/.test(trimmedEmail)) {
       setError("Please enter a valid email.");
       setLoading(false);
