@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { saveScore } from "@/lib/dbLogic";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -26,7 +26,7 @@ export default function ClientGame() {
       }, 1000);
       return () => clearInterval(timer);
     } else {
-      setIsGameStarted(true); // Set gameStart to true when countdown reaches 0
+      setIsGameStarted(true); // Initialize game
     }
   }, [count]);
 
@@ -63,7 +63,7 @@ export default function ClientGame() {
       dx: Math.random() < 0.5 ? 3 : -3,
       dy: Math.random() < 0.5 ? 1.5 : -1.5,
     };
-  }, [count]);
+  }, [isGameStarted]);
 
   // Move ball function
   const moveBall = (timestamp) => {
@@ -122,19 +122,20 @@ export default function ClientGame() {
 
   // Handle ball movement
   useEffect(() => {
-    if (count === 0 && fieldSize.width > 0 && fieldSize.height > 0) {
+    if (isGameStarted && fieldSize.width > 0 && fieldSize.height > 0) {
       lastUpdateTime.current = 0;
       animationFrameId.current = requestAnimationFrame(moveBall);
     }
     return () => cancelAnimationFrame(animationFrameId.current);
-  }, [count, fieldSize]);
+  }, [isGameStarted, fieldSize]);
 
   // Handle game over
-  const handleGameOver = () => {
+  async function handleGameOver() {
     cancelAnimationFrame(animationFrameId.current);
-    localStorage.setItem("gameScore", score.toString());
+    //localStorage.setItem("gameScore", score.toString());
+    saveScore(score);
     router.push("/game/over");
-  };
+  }
 
   return (
     <>
