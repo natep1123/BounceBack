@@ -55,7 +55,7 @@ export default function ClientGame() {
         ballRef.current.style.transform = `translate(${position.current.x}px, ${position.current.y}px)`;
       }
     }
-  }, [fieldSize, count]);
+  }, [fieldSize, isGameStarted]);
 
   // Set initial velocity
   useEffect(() => {
@@ -132,7 +132,6 @@ export default function ClientGame() {
   // Handle game over
   async function handleGameOver() {
     cancelAnimationFrame(animationFrameId.current);
-    //localStorage.setItem("gameScore", score.toString());
     saveScore(score);
     router.push("/game/over");
   }
