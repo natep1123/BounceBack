@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import Header from "@/components/Header";
+import UserProfileCard from "@/components/UserProfileCard";
 
 export default async function Profile() {
   // Server-side session check
@@ -13,14 +14,12 @@ export default async function Profile() {
   const email = session.user.email;
 
   return (
-    <>
+    <div className="min-h-screen bg-gray-900 text-white">
       <Header display="navbar" />
-      <main className="flex flex-col items-center h-screen">
+      <main className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] px-4">
         <h2>{username}'s Profile</h2>
-        <div className="flex flex-col items-center rounded-lg shadow-lg p-6 w-full max-w-md">
-          <p className="text-white">User content goes here.</p>
-        </div>
+        <UserProfileCard username={username} email={email} />
       </main>
-    </>
+    </div>
   );
 }
