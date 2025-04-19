@@ -109,7 +109,7 @@ export default function BallAnimation() {
       >
         <div
           ref={ballRef}
-          className="w-[12px] h-[12px] rounded-full bg-orange-300 absolute"
+          className="rounded-full bg-orange-300 absolute"
           style={{
             width: `${ballSize}px`,
             height: `${ballSize}px`,
