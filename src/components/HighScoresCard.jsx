@@ -26,7 +26,7 @@ export default function HighScoresCard({ highscores }) {
           ))}
         </div>
       ) : (
-        <p className="text-center text-gray-400">-</p>
+        <p className="text-center text-gray-400">Loading...</p>
       )}
       {highscores?.message && (
         <p className="text-center text-gray-400 mt-4">{highscores.message}</p>
