@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Link from "next/link";
 
-export default function BallAnimation() {
+export default function BallAnimation({ setGameState }) {
   const ballSize = 12;
   const boxRef = useRef(null);
   const ballRef = useRef(null);
@@ -102,6 +101,11 @@ export default function BallAnimation() {
     return () => cancelAnimationFrame(animationFrameId.current);
   }, []);
 
+  const handleClick = () => {
+    cancelAnimationFrame(animationFrameId.current);
+    setGameState("play");
+  };
+
   return (
     <div className="flex flex-col items-center mt-4">
       <div
@@ -119,14 +123,12 @@ export default function BallAnimation() {
           }}
         />
       </div>
-      <Link href="/game/play">
-        <button
-          className="mt-4 px-4 py-2 text-white bg-pink-600 border-2 border-gray-800 rounded-lg cursor-pointer"
-          onClick={() => cancelAnimationFrame(animationFrameId.current)}
-        >
-          Start!
-        </button>
-      </Link>
+      <button
+        className="mt-4 px-4 py-2 text-white bg-pink-600 border-2 border-gray-800 rounded-lg cursor-pointer"
+        onClick={() => handleClick()}
+      >
+        Start!
+      </button>
     </div>
   );
 }

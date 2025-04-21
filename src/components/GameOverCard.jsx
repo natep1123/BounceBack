@@ -5,15 +5,12 @@ import { getLatestScore, getHighscores } from "@/lib/dbLogic";
 import FinalScoreCard from "./FinalScoreCard";
 import HighScoresCard from "./HighScoresCard";
 
-export default function GameOverCard() {
-  const [finalScore, setFinalScore] = useState(null);
+export default function GameOverCard({ score }) {
   const [highscores, setHighscores] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const latestScore = await getLatestScore();
-        setFinalScore(latestScore);
         const highscoresData = await getHighscores();
         setHighscores(highscoresData);
       } catch (error) {
@@ -25,7 +22,7 @@ export default function GameOverCard() {
 
   return (
     <>
-      <FinalScoreCard finalScore={finalScore} />
+      <FinalScoreCard finalScore={score} />
       <HighScoresCard highscores={highscores} />
     </>
   );

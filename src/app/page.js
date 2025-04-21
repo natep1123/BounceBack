@@ -7,7 +7,7 @@ export default async function Home() {
   // Server-side check before rendering client component
   const session = await auth();
   if (session) {
-    redirect("/game/start");
+    redirect("/game");
   }
   return (
     <>

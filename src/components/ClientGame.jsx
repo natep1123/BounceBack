@@ -1,12 +1,10 @@
 "use client";
 
 import { saveScore } from "@/lib/dbLogic";
-import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-export default function ClientGame() {
+export default function ClientGame({ setGameState, score, setScore }) {
   const [count, setCount] = useState(3);
-  const [score, setScore] = useState(0);
   const [isGameStarted, setIsGameStarted] = useState(false);
   const ballSize = 12;
   const paddleWidth = 10;
@@ -23,7 +21,6 @@ export default function ClientGame() {
   const lastUpdateTime = useRef(0);
   const animationFrameId = useRef(0);
   const isDragging = useRef({ left: false, right: false });
-  const router = useRouter();
 
   // Countdown effect
   useEffect(() => {
@@ -285,7 +282,7 @@ export default function ClientGame() {
   async function handleGameOver(finalScore) {
     cancelAnimationFrame(animationFrameId.current);
     await saveScore(finalScore);
-    router.push("/game/over");
+    setGameState("over");
   }
 
   return (

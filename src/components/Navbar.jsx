@@ -21,22 +21,22 @@ export default function NavBar() {
     <nav className="py-4 border-t-2 border-pink-600">
       <ul className="flex items-center justify-around">
         <li>
-          <Link href="/game/profile" className="text-orange-300">
+          <Link href="/profile" className="text-orange-300">
             Profile
           </Link>
         </li>
         <li>
-          <Link href="/game/leaderboard" className="text-orange-300">
+          <Link href="/leaderboard" className="text-orange-300">
             Leaderboard
           </Link>
         </li>
         <li>
-          <Link href="/game/start" className="text-orange-300">
+          <Link href="/game" className="text-orange-300">
             Start
           </Link>
         </li>
         <li>
-          <Link href="/game/about" className="text-orange-300">
+          <Link href="/about" className="text-orange-300">
             About
           </Link>
         </li>

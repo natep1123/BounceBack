@@ -7,7 +7,7 @@ export default function FinalScoreCard({ finalScore }) {
         Final Score
       </h3>
       <p className="text-5xl font-bold text-center text-white">
-        {finalScore?.score !== undefined ? finalScore.score : "Loading..."}
+        {finalScore ? finalScore : "Loading..."}
       </p>
       {finalScore?.message && (
         <p className="text-center text-gray-400 mt-2">{finalScore.message}</p>

@@ -10,19 +10,6 @@ export async function saveScore(score) {
   }
 }
 
-// Function to get the most recent score
-export async function getLatestScore() {
-  try {
-    const response = await axios.get("/api/latest-score");
-    return {
-      score: response.data.score || 0,
-      message: response.data.message || "Score retrieved",
-    };
-  } catch (error) {
-    console.error("Error fetching latest score:", error);
-  }
-}
-
 // Function to get user top 5 high scores (deletes scores not in top 5)
 export async function getHighscores() {
   try {

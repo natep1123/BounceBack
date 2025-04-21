@@ -1,9 +1,10 @@
 "use client";
 import Link from "next/link";
 
-export default function AboutDevCard() {
+export default function AboutDevCard({ setAboutState }) {
   return (
     <>
+      <h2>About the Developer</h2>
       <div className="w-full max-w-2xl p-8 bg-gray-800 rounded-lg shadow-lg shadow-pink-500/20">
         <div className="text-gray-200 space-y-5">
           <p>
@@ -45,9 +46,12 @@ export default function AboutDevCard() {
           </ul>
         </div>
       </div>
-      <Link className="mt-4 text-orange-400 font-medium" href="/game/about">
+      <a
+        className="mt-4 text-orange-400 font-medium cursor-pointer"
+        onClick={() => setAboutState("game")}
+      >
         About the Game
-      </Link>
+      </a>
     </>
   );
 }
