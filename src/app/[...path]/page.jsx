@@ -10,7 +10,7 @@ export default function NotFound() {
     // Redirect to homepage after 5 seconds
     const timer = setTimeout(() => {
       router.push("/");
-    }, 5000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, [router]);
