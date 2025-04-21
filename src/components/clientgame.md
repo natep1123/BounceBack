@@ -5,98 +5,99 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export default function ClientGame() {
-  const [count, setCount] = useState(3);
-  const [score, setScore] = useState(0);
-  const [isGameStarted, setIsGameStarted] = useState(false);
-  const ballSize = 12;
-  const paddleWidth = 10;
-  const paddleHeight = 80;
-  const fieldRef = useRef(null);
-  const ballRef = useRef(null);
-  const leftPaddleRef = useRef(null);
-  const rightPaddleRef = useRef(null);
-  const [fieldSize, setFieldSize] = useState({ width: 0, height: 0 });
-  const position = useRef({ x: 0, y: 0 });
-  const velocity = useRef({ dx: 3, dy: 1.5 });
-  const leftPaddleY = useRef(0);
-  const rightPaddleY = useRef(0);
-  const lastUpdateTime = useRef(0);
-  const animationFrameId = useRef(0);
-  const isDragging = useRef({ left: false, right: false });
-  const router = useRouter();
+const [count, setCount] = useState(3);
+const [score, setScore] = useState(0);
+const [isGameStarted, setIsGameStarted] = useState(false);
+const ballSize = 12;
+const paddleWidth = 10;
+const paddleHeight = 80;
+const fieldRef = useRef(null);
+const ballRef = useRef(null);
+const leftPaddleRef = useRef(null);
+const rightPaddleRef = useRef(null);
+const [fieldSize, setFieldSize] = useState({ width: 0, height: 0 });
+const position = useRef({ x: 0, y: 0 });
+const velocity = useRef({ dx: 3, dy: 1.5 });
+const leftPaddleY = useRef(0);
+const rightPaddleY = useRef(0);
+const lastUpdateTime = useRef(0);
+const animationFrameId = useRef(0);
+const isDragging = useRef({ left: false, right: false });
+const router = useRouter();
 
-  // Countdown effect
-  useEffect(() => {
-    if (count > 0) {
-      const timer = setInterval(() => {
-        setCount((prev) => prev - 1);
-      }, 1000);
-      return () => clearInterval(timer);
-    } else {
-      setIsGameStarted(true);
-    }
-  }, [count]);
+// Countdown effect
+useEffect(() => {
+if (count > 0) {
+const timer = setInterval(() => {
+setCount((prev) => prev - 1);
+}, 1000);
+return () => clearInterval(timer);
+} else {
+setIsGameStarted(true);
+}
+}, [count]);
 
-  // Measure game field size and initialize paddle positions
-  useEffect(() => {
-    const updateFieldSize = () => {
-      if (fieldRef.current) {
-        const { offsetWidth, offsetHeight } = fieldRef.current;
-        setFieldSize({ width: offsetWidth, height: offsetHeight });
-        // Initialize paddle positions (centered vertically)
-        leftPaddleY.current = (offsetHeight - paddleHeight) / 2;
-        rightPaddleY.current = (offsetHeight - paddleHeight) / 2;
-        updatePaddlePositions();
-      }
-    };
+// Measure game field size and initialize paddle positions
+useEffect(() => {
+const updateFieldSize = () => {
+if (fieldRef.current) {
+const { offsetWidth, offsetHeight } = fieldRef.current;
+setFieldSize({ width: offsetWidth, height: offsetHeight });
+// Initialize paddle positions (centered vertically)
+leftPaddleY.current = (offsetHeight - paddleHeight) / 2;
+rightPaddleY.current = (offsetHeight - paddleHeight) / 2;
+updatePaddlePositions();
+}
+};
 
     updateFieldSize();
     window.addEventListener("resize", updateFieldSize);
     return () => window.removeEventListener("resize", updateFieldSize);
-  }, [isGameStarted]);
 
-  // Set initial ball position
-  useEffect(() => {
-    if (fieldSize.width > 0 && fieldSize.height > 0) {
-      position.current = {
-        x: (fieldSize.width - ballSize) / 2,
-        y: (fieldSize.height - ballSize) / 2,
-      };
-      if (ballRef.current) {
-        ballRef.current.style.transform = `translate(${position.current.x}px, ${position.current.y}px)`;
-      }
-    }
-  }, [fieldSize, isGameStarted]);
+}, [isGameStarted]);
 
-  // Set initial velocity
-  useEffect(() => {
-    velocity.current = {
-      dx: Math.random() < 0.5 ? 3 : -3,
-      dy: Math.random() < 0.5 ? 1.5 : -1.5,
-    };
-  }, [isGameStarted]);
+// Set initial ball position
+useEffect(() => {
+if (fieldSize.width > 0 && fieldSize.height > 0) {
+position.current = {
+x: (fieldSize.width - ballSize) / 2,
+y: (fieldSize.height - ballSize) / 2,
+};
+if (ballRef.current) {
+ballRef.current.style.transform = `translate(${position.current.x}px, ${position.current.y}px)`;
+}
+}
+}, [fieldSize, isGameStarted]);
 
-  // Update paddle positions in DOM
-  const updatePaddlePositions = () => {
-    if (leftPaddleRef.current) {
-      leftPaddleRef.current.style.transform = `translateY(${leftPaddleY.current}px)`;
-    }
-    if (rightPaddleRef.current) {
-      rightPaddleRef.current.style.transform = `translateY(${rightPaddleY.current}px)`;
-    }
-  };
+// Set initial velocity
+useEffect(() => {
+velocity.current = {
+dx: Math.random() < 0.5 ? 3 : -3,
+dy: Math.random() < 0.5 ? 1.5 : -1.5,
+};
+}, [isGameStarted]);
 
-  // Handle paddle dragging
-  useEffect(() => {
-    const handleMouseDown = (e) => {
-      const mouseX = e.clientX;
-      // Click on left half of window grabs left paddle, right half grabs right paddle
-      if (mouseX < window.innerWidth / 2) {
-        isDragging.current.left = true;
-      } else {
-        isDragging.current.right = true;
-      }
-    };
+// Update paddle positions in DOM
+const updatePaddlePositions = () => {
+if (leftPaddleRef.current) {
+leftPaddleRef.current.style.transform = `translateY(${leftPaddleY.current}px)`;
+}
+if (rightPaddleRef.current) {
+rightPaddleRef.current.style.transform = `translateY(${rightPaddleY.current}px)`;
+}
+};
+
+// Handle paddle dragging
+useEffect(() => {
+const handleMouseDown = (e) => {
+const mouseX = e.clientX;
+// Click on left half of window grabs left paddle, right half grabs right paddle
+if (mouseX < window.innerWidth / 2) {
+isDragging.current.left = true;
+} else {
+isDragging.current.right = true;
+}
+};
 
     const handleMouseUp = () => {
       isDragging.current.left = false;
@@ -158,12 +159,13 @@ export default function ClientGame() {
         window.removeEventListener("mousemove", handleMouseMove);
       };
     }
-  }, [isGameStarted, fieldSize]);
 
-  // Move ball and handle collisions
-  const moveBall = async (timestamp) => {
-    if (!lastUpdateTime.current) lastUpdateTime.current = timestamp;
-    const deltaTime = (timestamp - lastUpdateTime.current) / 1000;
+}, [isGameStarted, fieldSize]);
+
+// Move ball and handle collisions
+const moveBall = async (timestamp) => {
+if (!lastUpdateTime.current) lastUpdateTime.current = timestamp;
+const deltaTime = (timestamp - lastUpdateTime.current) / 1000;
 
     // Update position
     position.current.x += velocity.current.dx * deltaTime * 60;
@@ -270,72 +272,76 @@ export default function ClientGame() {
 
     lastUpdateTime.current = timestamp;
     animationFrameId.current = requestAnimationFrame(moveBall);
-  };
 
-  // Handle ball movement
-  useEffect(() => {
-    if (isGameStarted && fieldSize.width > 0 && fieldSize.height > 0) {
-      lastUpdateTime.current = 0;
-      animationFrameId.current = requestAnimationFrame(moveBall);
-    }
-    return () => cancelAnimationFrame(animationFrameId.current);
-  }, [isGameStarted, fieldSize, score]);
+};
 
-  // Handle game over
-  async function handleGameOver(finalScore) {
-    cancelAnimationFrame(animationFrameId.current);
-    await saveScore(finalScore);
-    router.push("/game/over");
-  }
+// Handle ball movement
+useEffect(() => {
+if (isGameStarted && fieldSize.width > 0 && fieldSize.height > 0) {
+lastUpdateTime.current = 0;
+animationFrameId.current = requestAnimationFrame(moveBall);
+}
+return () => cancelAnimationFrame(animationFrameId.current);
+}, [isGameStarted, fieldSize, score]);
 
-  return (
-    <>
-      <h2>Score: {score}</h2>
-      <div className="flex flex-col items-center mt-2">
-        {count > 0 ? (
-          <div className="flex items-center justify-center h-[300px] w-[65vw] bg-gray-800 border-2 border-pink-600 rounded-lg">
-            <span className="text-6xl font-bold text-white">{count}</span>
-          </div>
-        ) : (
-          <div
+// Handle game over
+async function handleGameOver(finalScore) {
+cancelAnimationFrame(animationFrameId.current);
+await saveScore(finalScore);
+router.push("/game/over");
+}
+
+return (
+<>
+<h2>Score: {score}</h2>
+<div className="flex flex-col items-center mt-2">
+{count > 0 ? (
+<div className="flex items-center justify-center h-[300px] w-[65vw] bg-gray-800 border-2 border-pink-600 rounded-lg">
+<span className="text-6xl font-bold text-white">{count}</span>
+</div>
+) : (
+<div
             ref={fieldRef}
             className="w-[65vw] h-[300px] border-2 border-pink-600 bg-gray-800 relative"
           >
-            <div
-              ref={leftPaddleRef}
-              className="absolute bg-blue-500"
-              style={{
+<div
+ref={leftPaddleRef}
+className="absolute bg-blue-500"
+style={{
                 width: `${paddleWidth}px`,
                 height: `${paddleHeight}px`,
                 left: 0,
                 top: 0,
                 willChange: "transform",
               }}
-            />
-            <div
-              ref={rightPaddleRef}
-              className="absolute bg-blue-500"
-              style={{
+/>
+<div
+ref={rightPaddleRef}
+className="absolute bg-blue-500"
+style={{
                 width: `${paddleWidth}px`,
                 height: `${paddleHeight}px`,
                 right: 0,
                 top: 0,
                 willChange: "transform",
               }}
-            />
-            <div
-              ref={ballRef}
-              className="rounded-full bg-orange-300 absolute"
-              style={{
+/>
+<div
+ref={ballRef}
+className="rounded-full bg-orange-300 absolute"
+style={{
                 width: `${ballSize}px`,
                 height: `${ballSize}px`,
                 willChange: "transform",
                 boxShadow: "0 0 4px rgba(0, 0, 0, 0.3)",
               }}
-            />
-          </div>
-        )}
-      </div>
-    </>
-  );
+/>
+</div>
+)}
+</div>
+<span>
+Velocity: x: {velocity.dx}, y: {velocity.dy}
+</span>
+</>
+);
 }
