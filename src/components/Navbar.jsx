@@ -16,7 +16,6 @@ export default function NavBar() {
       console.error("Logout error:", error);
     }
   };
-
   return (
     <nav className="py-4 border-t-2 border-pink-600">
       <ul className="flex items-center justify-around">

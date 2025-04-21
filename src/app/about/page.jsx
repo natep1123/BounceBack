@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import Header from "@/components/Header";
-import About from "@/components/About";
+import About from "@/components/about/About";
 
 export default async function AboutGame() {
   // Server-side session check

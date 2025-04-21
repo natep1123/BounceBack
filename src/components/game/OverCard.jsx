@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getLatestScore, getHighscores } from "@/lib/dbLogic";
+import { getHighscores } from "@/lib/dbLogic";
 import FinalScoreCard from "./FinalScoreCard";
-import HighScoresCard from "./HighScoresCard";
+import HighScoresCard from "../HighScoresCard";
 
-export default function GameOverCard({ score }) {
+export default function OverCard({ score }) {
   const [highscores, setHighscores] = useState(null);
 
   useEffect(() => {

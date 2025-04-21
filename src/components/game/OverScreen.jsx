@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import GameOverCard from "@/components/GameOverCard";
+import OverCard from "@/components/game/OverCard";
 
 export default function OverScreen({ setGameState, score, setScore }) {
   function handleClick() {
@@ -17,7 +17,7 @@ export default function OverScreen({ setGameState, score, setScore }) {
         >
           Play Again?
         </button>
-        <GameOverCard score={score} />
+        <OverCard score={score} />
       </main>
     </div>
   );

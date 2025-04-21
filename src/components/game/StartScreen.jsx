@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import BallAnimation from "@/components/BallAnimation";
+import BallAnimation from "./BallAnimation";
 
 export default function StartScreen({ setGameState }) {
   return (

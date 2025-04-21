@@ -1,4 +1,4 @@
-import ClientGame from "@/components/ClientGame";
+import ClientGame from "@/components/game/ClientGame";
 import Header from "@/components/Header";
 
 export default function Play({ setGameState, score, setScore }) {
