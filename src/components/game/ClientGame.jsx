@@ -39,10 +39,21 @@ export default function ClientGame({ setGameState, score, setScore }) {
     const updateFieldSize = () => {
       if (fieldRef.current) {
         const { offsetWidth, offsetHeight } = fieldRef.current;
-        setFieldSize({ width: offsetWidth, height: offsetHeight });
-        // Initialize paddle positions (centered vertically)
-        leftPaddleY.current = (offsetHeight - paddleHeight) / 2;
-        rightPaddleY.current = (offsetHeight - paddleHeight) / 2;
+        // Dynamically get border width
+        const borderWidth =
+          parseInt(getComputedStyle(fieldRef.current).borderBottomWidth, 10) ||
+          2;
+        // Subtract top and bottom borders for inner content height
+        const innerHeight = offsetHeight - 2 * borderWidth;
+        console.log({
+          offsetHeight,
+          borderWidth,
+          innerHeight,
+        }); // Debug dimensions
+        setFieldSize({ width: offsetWidth, height: innerHeight });
+        // Initialize paddle positions (centered vertically within inner height)
+        leftPaddleY.current = (innerHeight - paddleHeight) / 2;
+        rightPaddleY.current = (innerHeight - paddleHeight) / 2;
         updatePaddlePositions();
       }
     };
@@ -105,12 +116,16 @@ export default function ClientGame({ setGameState, score, setScore }) {
         const fieldRect = fieldRef.current.getBoundingClientRect();
         const mouseY = e.clientY - fieldRect.top;
         let deltaY = 0;
+        const offset = 1; // Empirical 1px offset to prevent bottom overlap
 
         if (isDragging.current.left) {
           // Move left paddle
           const newLeftY = Math.max(
             0,
-            Math.min(mouseY - paddleHeight / 2, fieldSize.height - paddleHeight)
+            Math.min(
+              mouseY - paddleHeight / 2,
+              fieldSize.height - paddleHeight - offset
+            )
           );
           deltaY = newLeftY - leftPaddleY.current;
           leftPaddleY.current = newLeftY;
@@ -118,7 +133,7 @@ export default function ClientGame({ setGameState, score, setScore }) {
           rightPaddleY.current = Math.max(
             0,
             Math.min(
-              fieldSize.height - paddleHeight,
+              fieldSize.height - paddleHeight - offset,
               rightPaddleY.current - deltaY
             )
           );
@@ -126,7 +141,10 @@ export default function ClientGame({ setGameState, score, setScore }) {
           // Move right paddle
           const newRightY = Math.max(
             0,
-            Math.min(mouseY - paddleHeight / 2, fieldSize.height - paddleHeight)
+            Math.min(
+              mouseY - paddleHeight / 2,
+              fieldSize.height - paddleHeight - offset
+            )
           );
           deltaY = newRightY - rightPaddleY.current;
           rightPaddleY.current = newRightY;
@@ -134,7 +152,7 @@ export default function ClientGame({ setGameState, score, setScore }) {
           leftPaddleY.current = Math.max(
             0,
             Math.min(
-              fieldSize.height - paddleHeight,
+              fieldSize.height - paddleHeight - offset,
               leftPaddleY.current - deltaY
             )
           );
@@ -282,7 +300,9 @@ export default function ClientGame({ setGameState, score, setScore }) {
   async function handleGameOver(finalScore) {
     cancelAnimationFrame(animationFrameId.current);
     await saveScore(finalScore);
-    setGameState("over");
+    setTimeout(() => {
+      setGameState("over");
+    }, 1000);
   }
 
   return (
@@ -290,7 +310,7 @@ export default function ClientGame({ setGameState, score, setScore }) {
       <h2>Score: {score}</h2>
       <div className="flex flex-col items-center mt-2">
         {count > 0 ? (
-          <div className="flex items-center justify-center h-[300px] w-[65vw] bg-gray-800 border-2 border-pink-600 rounded-lg">
+          <div className="flex items-center justify-center h-[300px] w-[65vw] bg-gray-800 border-2 border-pink-600">
             <span className="text-6xl font-bold text-white">{count}</span>
           </div>
         ) : (
@@ -307,6 +327,7 @@ export default function ClientGame({ setGameState, score, setScore }) {
                 left: 0,
                 top: 0,
                 willChange: "transform",
+                transform: "translateZ(0)", // Force hardware acceleration
               }}
             />
             <div
@@ -318,6 +339,7 @@ export default function ClientGame({ setGameState, score, setScore }) {
                 right: 0,
                 top: 0,
                 willChange: "transform",
+                transform: "translateZ(0)", // Force hardware acceleration
               }}
             />
             <div
@@ -327,6 +349,7 @@ export default function ClientGame({ setGameState, score, setScore }) {
                 width: `${ballSize}px`,
                 height: `${ballSize}px`,
                 willChange: "transform",
+                transform: "translateZ(0)", // Force hardware acceleration
                 boxShadow: "0 0 4px rgba(0, 0, 0, 0.3)",
               }}
             />

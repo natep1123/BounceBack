@@ -7,6 +7,7 @@ import AboutDevcard from "./AboutDevCard";
 
 export default function About() {
   const [aboutState, setAboutState] = useState("game");
+
   return (
     <>
       <Header display="navbar" />

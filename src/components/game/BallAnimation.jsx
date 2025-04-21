@@ -119,6 +119,7 @@ export default function BallAnimation({ setGameState }) {
             width: `${ballSize}px`,
             height: `${ballSize}px`,
             willChange: "transform",
+            transform: "translateZ(0)",
             boxShadow: "0 0 4px rgba(0, 0, 0, 0.3)",
           }}
         />
