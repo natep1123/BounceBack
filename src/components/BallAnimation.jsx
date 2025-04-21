@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 
 export default function BallAnimation() {
   const ballSize = 12;
@@ -118,6 +119,14 @@ export default function BallAnimation() {
           }}
         />
       </div>
+      <Link href="/game/play">
+        <button
+          className="mt-4 px-4 py-2 text-white bg-pink-600 border-2 border-gray-800 rounded-lg cursor-pointer"
+          onClick={() => cancelAnimationFrame(animationFrameId.current)}
+        >
+          Start!
+        </button>
+      </Link>
     </div>
   );
 }

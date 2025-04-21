@@ -20,7 +20,6 @@ export default function GameOverCard() {
         console.error("Error fetching data:", error);
       }
     };
-
     fetchData();
   }, []);
 
