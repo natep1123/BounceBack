@@ -16,7 +16,7 @@ export default async function Profile() {
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <Header display="navbar" />
-      <main className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] px-4">
+      <main className="flex flex-col items-center min-h-[calc(100vh-4rem)] px-4">
         <h2>{username}'s Profile</h2>
         <UserProfileCard username={username} email={email} />
       </main>
