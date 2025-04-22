@@ -56,7 +56,7 @@ export default function LoginForm() {
           loading ? "opacity-0" : "opacity-100"
         }`}
       >
-        <h2>Login</h2>
+        <h2 className="text-2xl font-bold text-gray-200 mb-4">Login</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             onChange={(e) => setEmail(e.target.value)}
@@ -77,16 +77,9 @@ export default function LoginForm() {
           >
             Login
           </button>
-          {error && (
-            <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
-              {error}
-            </div>
-          )}
-        </form>
-        <div className="mt-4 mb-2">
           <button
             onClick={handleGitHubLogin}
-            className="w-full bg-gray-700 text-white font-bold rounded-md px-6 py-3 cursor-pointer flex items-center justify-center gap-2"
+            className="w-full bg-gray-700 text-white font-bold rounded-md px-6 py-3 hover:bg-gray-600 transition-colors cursor-pointer flex items-center justify-center gap-2"
             disabled={loading}
           >
             <svg
@@ -99,10 +92,18 @@ export default function LoginForm() {
             </svg>
             Login with GitHub
           </button>
-        </div>
-        <Link className="text-sm text-right text-orange-300" href={"/register"}>
-          Don't have an account? <span className="underline">Register</span>
-        </Link>
+          {error && (
+            <div className="bg-red-500 text-white text-sm py-1 px-3 rounded-md mt-2 w-fit mx-auto text-center">
+              {error}
+            </div>
+          )}
+          <Link
+            className="text-sm text-right text-orange-300 hover:text-orange-200 hover:underline"
+            href={"/register"}
+          >
+            Don't have an account? <span className="underline">Register</span>
+          </Link>
+        </form>
       </div>
     </div>
   );

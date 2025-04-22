@@ -1,4 +1,3 @@
-// components/RegisterForm.jsx
 "use client";
 
 import Link from "next/link";
@@ -78,7 +77,7 @@ export default function RegisterForm() {
           loading ? "opacity-0" : "opacity-100"
         }`}
       >
-        <h2>Register</h2>
+        <h2 className="text-2xl font-bold text-gray-200 mb-4">Register</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             onChange={(e) => setUsername(e.target.value)}
@@ -106,12 +105,12 @@ export default function RegisterForm() {
             Register
           </button>
           {error && (
-            <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
+            <div className="	bg-red-500 text-white text-sm py-1 px-3 rounded-md mt-2 w-fit mx-auto text-center">
               {error}
             </div>
           )}
           <Link
-            className="text-sm mt-3 text-right text-orange-300 hover:text-orange-200 hover:underline"
+            className="text-sm text-right text-orange-300 hover:text-orange-200 hover:underline"
             href={"/"}
           >
             Already have an account? <span className="underline">Login</span>

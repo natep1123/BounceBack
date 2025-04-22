@@ -39,3 +39,13 @@ export async function getLeaderboard() {
     };
   }
 }
+
+// Function to delete user and all associated scores
+export async function deleteUser() {
+  try {
+    const response = await axios.delete("/api/delete-user");
+    return response;
+  } catch (error) {
+    console.error("Error deleting user:", error);
+  }
+}

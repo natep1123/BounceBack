@@ -3,7 +3,7 @@ import { auth } from "@/auth";
 import Header from "@/components/Header";
 import LeaderboardCard from "@/components/LeaderboardCard";
 
-export default async function Leaderboard() {
+export default async function LeaderboardPage() {
   // Server-side session check
   const session = await auth();
   if (!session) {
