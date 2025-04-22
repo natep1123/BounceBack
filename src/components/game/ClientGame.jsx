@@ -211,12 +211,12 @@ export default function ClientGame({ setGameState, score, setScore }) {
       setScore((prev) => prev + 1);
       // Velocity adjustments
       const newScore = score + 1;
-      if (newScore < 25) {
+      if (newScore < 20) {
         velocity.current.dx *= 1.05;
         velocity.current.dy *= 1.05;
       }
-      velocity.current.dx = Math.max(-10, Math.min(10, velocity.current.dx));
-      velocity.current.dy = Math.max(-5, Math.min(5, velocity.current.dy));
+      velocity.current.dx = Math.max(-8, Math.min(8, velocity.current.dx));
+      velocity.current.dy = Math.max(-4, Math.min(4, velocity.current.dy));
     }
 
     // Right paddle collision
@@ -238,12 +238,12 @@ export default function ClientGame({ setGameState, score, setScore }) {
       setScore((prev) => prev + 1);
       // Velocity adjustments
       const newScore = score + 1;
-      if (newScore < 25) {
+      if (newScore < 20) {
         velocity.current.dx *= 1.05;
         velocity.current.dy *= 1.05;
       }
-      velocity.current.dx = Math.max(-10, Math.min(10, velocity.current.dx));
-      velocity.current.dy = Math.max(-5, Math.min(5, velocity.current.dy));
+      velocity.current.dx = Math.max(-8, Math.min(8, velocity.current.dx));
+      velocity.current.dy = Math.max(-4, Math.min(4, velocity.current.dy));
     }
 
     // Horizontal bounds check (left/right walls)
