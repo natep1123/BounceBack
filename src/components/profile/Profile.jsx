@@ -48,19 +48,17 @@ export default function Profile({ username, email }) {
         <h2>{username}'s Profile</h2>
         <UserInfoCard username={username} email={email} />
         <HighScoresCard highscores={highscores} />
-        <div className="mt-4">
-          <DeleteButton
-            loading={loading}
-            setLoading={setLoading}
-            setError={setError}
-            setIsDeleted={setIsDeleted}
-          />
-          {error && (
-            <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
-              {error}
-            </div>
-          )}
-        </div>
+        <DeleteButton
+          loading={loading}
+          setLoading={setLoading}
+          setError={setError}
+          setIsDeleted={setIsDeleted}
+        />
+        {error && (
+          <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
+            {error}
+          </div>
+        )}
       </main>
     </div>
   );

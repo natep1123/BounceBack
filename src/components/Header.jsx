@@ -2,7 +2,7 @@ import Navbar from "./Navbar";
 
 const Header = ({ display }) => {
   return (
-    <header className="border-b-2 border-pink-600">
+    <header className="border-b-2 border-pink-600 ">
       {display === "welcome" && <h1>Welcome to BounceBack!</h1>}
       {display === "navbar" && (
         <>
