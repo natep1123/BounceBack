@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GitHubProvider from "next-auth/providers/github";
 import bcrypt from "bcryptjs";
 import { connectDB } from "@/lib/db";
 import User from "@/models/User";
@@ -39,17 +40,39 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         };
       },
     }),
+    GitHubProvider({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
+    }),
   ],
   session: {
     strategy: "jwt",
     maxAge: 24 * 60 * 60,
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, account, profile }) {
       if (user) {
         token.id = user.id;
         token.email = user.email;
         token.username = user.name;
+      }
+      if (account?.provider === "github" && profile) {
+        await connectDB();
+        let dbUser = await User.findOne({ email: profile.email });
+        if (!dbUser) {
+          dbUser = await User.create({
+            email: profile.email,
+            username:
+              profile.login || profile.name || `github-user-${profile.id}`,
+            password: await bcrypt.hash(
+              Math.random().toString(36).slice(-8),
+              10
+            ),
+          });
+        }
+        token.id = dbUser._id.toString();
+        token.email = dbUser.email;
+        token.username = dbUser.username;
       }
       return token;
     },
@@ -66,5 +89,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     signIn: "/",
   },
   secret: process.env.AUTH_SECRET,
-  debug: true,
+  debug: process.env.NODE_ENV === "development",
 });

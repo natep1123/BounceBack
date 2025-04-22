@@ -22,7 +22,7 @@ export default function LeaderboardCard() {
   return (
     <div className="w-full max-w-md bg-gray-800 rounded-lg shadow-lg p-6 mb-4">
       <h3 className="text-2xl font-semibold text-center text-orange-400 mb-4">
-        All-Time Leaderboard
+        All-Time Top Scores
       </h3>
       {leaderboard?.scores && leaderboard.scores.length > 0 ? (
         <div className="space-y-4">
