@@ -17,37 +17,43 @@ export default function NavBar() {
     }
   };
   return (
-    <nav className="py-4 border-t-2 border-pink-600">
-      <ul className="flex items-center justify-around">
-        <li>
-          <Link href="/profile" className="text-orange-300">
-            Profile
-          </Link>
-        </li>
-        <li>
-          <Link href="/leaderboard" className="text-orange-300">
-            Leaderboard
-          </Link>
-        </li>
-        <li>
-          <Link href="/game" className="text-orange-300">
-            Start
-          </Link>
-        </li>
-        <li>
-          <Link href="/about" className="text-orange-300">
-            About
-          </Link>
-        </li>
-        <li>
-          <button
-            onClick={handleLogout}
-            className="text-orange-300 cursor-pointer"
-          >
-            Logout
-          </button>
-        </li>
-      </ul>
-    </nav>
+    <>
+      <nav className="py-2 border-t-2 border-pink-600">
+        <ul className="flex items-center justify-around">
+          <li>
+            <Link href="/profile" className="text-orange-300">
+              Profile
+            </Link>
+          </li>
+          <li>
+            <Link href="/leaderboard" className="text-orange-300">
+              Leaderboard
+            </Link>
+          </li>
+          <li>
+            <Link href="/game" className="flex items-center">
+              <img
+                src="logo.png"
+                alt="Start"
+                className="h-10 w-auto object-contain "
+              />
+            </Link>
+          </li>
+          <li>
+            <Link href="/about" className="text-orange-300">
+              About
+            </Link>
+          </li>
+          <li>
+            <button
+              onClick={handleLogout}
+              className="text-orange-300 cursor-pointer"
+            >
+              Logout
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </>
   );
 }
