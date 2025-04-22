@@ -70,8 +70,11 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="grid place-items-center h-screen bg-gray-900 relative">
+    <div className="flex flex-col items-center min-h-screen bg-gray-900 relative">
       {loading && <Loader isLoading={loading} />}
+      {!loading && (
+        <img src="/logo.png" alt="Logo" className="h-26 w-auto mb-4 mt-4" />
+      )}
       <div
         className={`shadow-xl p-6 rounded-xl bg-gray-800 border-t-4 border-purple-400 transition-opacity ${
           loading ? "opacity-0" : "opacity-100"
@@ -99,20 +102,17 @@ export default function RegisterForm() {
           />
           <button
             type="submit"
-            className="bg-pink-600 text-white font-bold rounded-md px-6 py-3 hover:bg-pink-500 transition-colors cursor-pointer"
+            className="bg-pink-600 text-white font-bold rounded-md px-6 py-3 cursor-pointer"
             disabled={loading}
           >
             Register
           </button>
           {error && (
-            <div className="	bg-red-500 text-white text-sm py-1 px-3 rounded-md mt-2 w-fit mx-auto text-center">
+            <div className="bg-red-500 text-white text-sm py-1 px-3 rounded-md mt-2 w-fit mx-auto text-center">
               {error}
             </div>
           )}
-          <Link
-            className="text-sm text-right text-orange-300 hover:text-orange-200 hover:underline"
-            href={"/"}
-          >
+          <Link className="text-sm text-right text-orange-300" href={"/"}>
             Already have an account? <span className="underline">Login</span>
           </Link>
         </form>

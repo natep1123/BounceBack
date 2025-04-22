@@ -49,8 +49,11 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="grid place-items-center h-screen bg-gray-900 relative">
+    <div className="flex flex-col items-center min-h-screen bg-gray-900 relative">
       {loading && <Loader isLoading={loading} />}
+      {!loading && (
+        <img src="/logo.png" alt="Logo" className="h-26 w-auto mb-4 mt-4" />
+      )}
       <div
         className={`shadow-xl p-6 rounded-xl bg-gray-800 border-t-4 border-purple-400 transition-opacity ${
           loading ? "opacity-0" : "opacity-100"
@@ -72,14 +75,14 @@ export default function LoginForm() {
           />
           <button
             type="submit"
-            className="bg-pink-600 text-white font-bold rounded-md px-6 py-3 hover:bg-pink-500 transition-colors cursor-pointer"
+            className="bg-pink-600 text-white font-bold rounded-md px-6 py-3 cursor-pointer"
             disabled={loading}
           >
             Login
           </button>
           <button
             onClick={handleGitHubLogin}
-            className="w-full bg-gray-700 text-white font-bold rounded-md px-6 py-3 hover:bg-gray-600 transition-colors cursor-pointer flex items-center justify-center gap-2"
+            className="w-full bg-gray-700 text-white font-bold rounded-md px-6 py-3 cursor-pointer flex items-center justify-center gap-2"
             disabled={loading}
           >
             <svg
@@ -98,7 +101,7 @@ export default function LoginForm() {
             </div>
           )}
           <Link
-            className="text-sm text-right text-orange-300 hover:text-orange-200 hover:underline"
+            className="text-sm text-right text-orange-300"
             href={"/register"}
           >
             Don't have an account? <span className="underline">Register</span>
