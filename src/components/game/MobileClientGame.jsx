@@ -226,9 +226,15 @@ export default function MobileClientGame({ setGameState, score, setScore }) {
       position.current.x = rightPaddleRect.left - ballSize - 0.1;
       setScore((prev) => prev + 1);
       const newScore = score + 1;
-      if (newScore < 25) {
-        velocity.current.dx *= 1.05;
-        velocity.current.dy *= 1.05;
+      if (newScore < 10) {
+        velocity.current.dx *= 1.04;
+        velocity.current.dy *= 1.04;
+      } else if (newScore <= 30 && newScore % 2 === 0) {
+        velocity.current.dx *= 1.04;
+        velocity.current.dy *= 1.04;
+      } else if (newScore > 30 && newScore <= 50 && newScore % 5 === 0) {
+        velocity.current.dx *= 1.1;
+        velocity.current.dy *= 1.1;
       }
       velocity.current.dx = Math.max(-7, Math.min(7, velocity.current.dx));
       velocity.current.dy = Math.max(-3.5, Math.min(3.5, velocity.current.dy));

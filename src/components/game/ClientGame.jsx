@@ -282,11 +282,17 @@ export default function ClientGame({ setGameState, score, setScore }) {
       velocity.current.dx *= -1;
       position.current.x = leftPaddleRect.right + 0.1; // Prevent sticking
       setScore((prev) => prev + 1);
-      // Velocity adjustments
+      // Velocity adjustments (based on score)
       const newScore = score + 1;
-      if (newScore < 25) {
-        velocity.current.dx *= 1.05;
-        velocity.current.dy *= 1.05;
+      if (newScore < 10) {
+        velocity.current.dx *= 1.04;
+        velocity.current.dy *= 1.04;
+      } else if (newScore <= 30 && newScore % 2 === 0) {
+        velocity.current.dx *= 1.04;
+        velocity.current.dy *= 1.04;
+      } else if (newScore > 30 && newScore <= 50 && newScore % 5 === 0) {
+        velocity.current.dx *= 1.1;
+        velocity.current.dy *= 1.1;
       }
       velocity.current.dx = Math.max(-10, Math.min(10, velocity.current.dx));
       velocity.current.dy = Math.max(-5, Math.min(5, velocity.current.dy));
@@ -309,11 +315,17 @@ export default function ClientGame({ setGameState, score, setScore }) {
       velocity.current.dx *= -1;
       position.current.x = rightPaddleRect.left - ballSize - 0.1; // Prevent sticking
       setScore((prev) => prev + 1);
-      // Velocity adjustments
+      // Velocity adjustments (based on score)
       const newScore = score + 1;
-      if (newScore < 25) {
-        velocity.current.dx *= 1.05;
-        velocity.current.dy *= 1.05;
+      if (newScore < 10) {
+        velocity.current.dx *= 1.04;
+        velocity.current.dy *= 1.04;
+      } else if (newScore <= 30 && newScore % 2 === 0) {
+        velocity.current.dx *= 1.04;
+        velocity.current.dy *= 1.04;
+      } else if (newScore > 30 && newScore <= 50 && newScore % 5 === 0) {
+        velocity.current.dx *= 1.1;
+        velocity.current.dy *= 1.1;
       }
       velocity.current.dx = Math.max(-10, Math.min(10, velocity.current.dx));
       velocity.current.dy = Math.max(-5, Math.min(5, velocity.current.dy));
