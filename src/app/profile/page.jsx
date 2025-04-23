@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Profile from "@/components/profile/Profile";
 
 export default async function ProfilePage() {
-  // Server-side session check
+  // Auth check
   const session = await auth();
   if (!session) {
     redirect("/");

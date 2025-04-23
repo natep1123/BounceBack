@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// This is the schema for the User model.
 const userSchema = new mongoose.Schema(
   {
     username: {

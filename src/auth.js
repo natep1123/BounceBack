@@ -5,6 +5,7 @@ import bcrypt from "bcryptjs";
 import { connectDB } from "@/lib/db";
 import User from "@/models/User";
 
+// This file handles authentication using NextAuth.js v5.
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     CredentialsProvider({

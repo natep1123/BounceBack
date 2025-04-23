@@ -12,6 +12,7 @@ export default function Profile({ username, email }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  // Fetch highscores data
   useEffect(() => {
     const fetchData = async () => {
       try {

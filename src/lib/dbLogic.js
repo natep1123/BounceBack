@@ -1,16 +1,16 @@
 import axios from "axios";
 
-// Funciton to save a score to the database
+// Function to save a score to the database.
 export async function saveScore(score) {
   try {
     const response = await axios.post("/api/save-score", { score });
-    return response.data.message; // e.g., "Score saved"
+    return response.data.message;
   } catch (error) {
     console.error("Error saving score:", error);
   }
 }
 
-// Function to get user top 5 high scores (deletes scores not in top 5)
+// Function to get user top 5 high scores (deletes all other scores).
 export async function getHighscores() {
   try {
     const response = await axios.get("/api/highscores");
@@ -23,7 +23,7 @@ export async function getHighscores() {
   }
 }
 
-// Function to get top 10 all-time top scores
+// Function to get top 10 scores across users.
 export async function getLeaderboard() {
   try {
     const response = await axios.get("/api/leaderboard");
@@ -40,7 +40,7 @@ export async function getLeaderboard() {
   }
 }
 
-// Function to delete user and all associated scores
+// Function to delete user and all associated scores.
 export async function deleteUser() {
   try {
     const response = await axios.delete("/api/delete-user");

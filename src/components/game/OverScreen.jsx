@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import OverCard from "@/components/game/OverCard";
 
 export default function OverScreen({ setGameState, score, setScore }) {
+  // Reset game state and score on button click
   function handleClick() {
     setGameState("play");
     setScore(0);

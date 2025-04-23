@@ -6,6 +6,7 @@ import { getLeaderboard } from "@/lib/dbLogic";
 export default function LeaderboardCard() {
   const [leaderboard, setLeaderboard] = useState(null);
 
+  // Fetch leaderboard data on component mount
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {

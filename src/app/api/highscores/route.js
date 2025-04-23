@@ -3,16 +3,17 @@ import Score from "@/models/Score";
 import { auth } from "@/auth";
 import { connectDB } from "@/lib/db";
 
+// This route handles the retrieval of high scores for a user AND deletes all but the top 5 scores.
 export async function GET() {
   try {
-    await connectDB();
-
     // Get user ID from session
     const session = await auth();
     if (!session || !session.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     const userId = session.user.id;
+
+    await connectDB();
 
     // Fetch top 5 scores
     const topScores = await Score.find({ user: userId })

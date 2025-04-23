@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import Game from "@/components/game/Game";
 
 export default async function GamePage() {
-  // Server-side session check
+  // Auth check
   const session = await auth();
   if (!session) {
     redirect("/");

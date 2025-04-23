@@ -4,7 +4,7 @@ import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
-  // Server-side check before rendering client component
+  // Auth check
   const session = await auth();
   if (session) {
     redirect("/game");

@@ -12,6 +12,7 @@ export default function DeleteButton({
   const router = useRouter();
 
   const handleDelete = async () => {
+    // Confirmation dialog
     if (
       !confirm(
         "Are you sure you want to delete your account? This cannot be undone."
@@ -19,10 +20,11 @@ export default function DeleteButton({
     ) {
       return;
     }
-
+    // Set loading state
     setLoading(true);
     setError("");
 
+    // API call
     try {
       const response = await deleteUser();
 

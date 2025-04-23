@@ -3,7 +3,7 @@ import { auth } from "@/auth";
 import About from "@/components/about/About";
 
 export default async function AboutGame() {
-  // Server-side session check
+  // Auth check
   const session = await auth();
   if (!session) {
     redirect("/");

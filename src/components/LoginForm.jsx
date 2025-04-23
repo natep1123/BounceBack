@@ -19,6 +19,7 @@ export default function LoginForm() {
     setLoading(true);
     setError("");
 
+    // Input validation
     const trimmedEmail = email.trim();
     const trimmedPassword = password.trim();
 
@@ -28,12 +29,14 @@ export default function LoginForm() {
       return;
     }
 
+    // API call
     const result = await signIn("credentials", {
       email: trimmedEmail,
       password: trimmedPassword,
       redirect: false,
     });
 
+    // Handle response
     if (result?.error) {
       setError("Incorrect email or password.");
       setLoading(false);

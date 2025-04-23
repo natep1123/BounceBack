@@ -7,7 +7,7 @@ import { signOut } from "next-auth/react";
 export default function NavBar() {
   const router = useRouter();
 
-  /* NextAuth v5's signOut with callbackUrl="/" failed to redirect, causing the browser to spin in refresh. Using redirect: false and manual router.push resolved the issue. */
+  /* NextAuth v5's signOut with callbackUrl="/" failed to redirect, causing the browser to spin in refresh. Using redirect: false and manual router.push("/") resolved the issue. */
   const handleLogout = async () => {
     try {
       await signOut({ redirect: false });

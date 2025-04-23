@@ -4,10 +4,10 @@ import Header from "@/components/Header";
 import LeaderboardCard from "@/components/LeaderboardCard";
 
 export default async function LeaderboardPage() {
-  // Server-side session check
+  // Auth check
   const session = await auth();
   if (!session) {
-    redirect("/"); // Redirect to login if not authenticated
+    redirect("/");
   }
   return (
     <>

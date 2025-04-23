@@ -4,6 +4,7 @@ import { use, useEffect, useState } from "react";
 export default function HighScoresCard({ highscores }) {
   const [loading, setLoading] = useState(true);
 
+  // Manage loading state
   useEffect(() => {
     if (highscores?.scores.length !== 0) {
       setLoading(false);

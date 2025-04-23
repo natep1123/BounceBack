@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 const Loader = ({ isLoading }) => {
   const [minTimeElapsed, setMinTimeElapsed] = useState(false);
 
+  // Set a minimum time for the loader to be visible
   useEffect(() => {
     if (isLoading) {
       setMinTimeElapsed(false); // Reset when loading starts

@@ -3,6 +3,7 @@ import User from "@/models/User";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 
+// This route handles user registration.
 export async function POST(req) {
   try {
     const { username, email, password } = await req.json();

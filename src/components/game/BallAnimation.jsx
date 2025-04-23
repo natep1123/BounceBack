@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
+// This component animates a ball bouncing around a box.
 export default function BallAnimation({ setGameState }) {
   const ballSize = 12;
   const boxRef = useRef(null);
@@ -64,7 +65,7 @@ export default function BallAnimation({ setGameState }) {
     position.current.x += velocity.current.dx * deltaTime;
     position.current.y += velocity.current.dy * deltaTime;
 
-    // Horizontal bounds
+    // Horizontal bounds check
     if (
       position.current.x <= 0 ||
       position.current.x >= boxSize.current.width - ballSize
@@ -76,7 +77,7 @@ export default function BallAnimation({ setGameState }) {
       );
     }
 
-    // Vertical bounds
+    // Vertical bounds check
     if (
       position.current.y <= 0 ||
       position.current.y >= boxSize.current.height - ballSize
@@ -101,6 +102,7 @@ export default function BallAnimation({ setGameState }) {
     return () => cancelAnimationFrame(animationFrameId.current);
   }, []);
 
+  // Function to stop the animation and set game state on click
   const handleClick = () => {
     cancelAnimationFrame(animationFrameId.current);
     setGameState("play");

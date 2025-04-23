@@ -12,7 +12,6 @@ export default function RegisterForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -20,6 +19,7 @@ export default function RegisterForm() {
     setLoading(true);
     setError("");
 
+    // Input validation
     const trimmedUsername = username.trim();
     const trimmedEmail = email.trim();
     const trimmedPassword = password.trim();
@@ -45,6 +45,7 @@ export default function RegisterForm() {
       return;
     }
 
+    // API call
     try {
       const response = await axios.post("/api/register", {
         username: trimmedUsername,

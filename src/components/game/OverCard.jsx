@@ -8,6 +8,7 @@ import HighScoresCard from "../HighScoresCard";
 export default function OverCard({ score }) {
   const [highscores, setHighscores] = useState(null);
 
+  // Fetch highscores data
   useEffect(() => {
     const fetchData = async () => {
       try {

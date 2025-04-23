@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { signOut } from "@/auth";
 
+// This route handles the deletion of a user account and all associated scores.
 export async function DELETE(req) {
   try {
     // Get user ID from session
@@ -14,9 +15,6 @@ export async function DELETE(req) {
     }
     const userId = session.user.id;
 
-    // Sign out the user
-    await signOut({ redirect: false });
-
     await connectDB();
 
     // Delete all scores associated with the user
@@ -24,6 +22,9 @@ export async function DELETE(req) {
 
     // Delete the user
     await User.findByIdAndDelete(userId);
+
+    // Sign out the user
+    await signOut({ redirect: false });
 
     return NextResponse.json(
       { message: "Account and associated scores deleted successfully." },

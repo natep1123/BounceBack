@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import Score from "@/models/Score";
 import { connectDB } from "@/lib/db";
 
+// This route handles the retrieval of top 10 scores across all users.
 export async function GET() {
   try {
     await connectDB();

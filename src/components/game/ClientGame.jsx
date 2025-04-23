@@ -3,6 +3,7 @@
 import { saveScore } from "@/lib/dbLogic";
 import { useEffect, useRef, useState } from "react";
 
+// This component handles the client-side game logic for a single-player pong-like game.
 export default function ClientGame({ setGameState, score, setScore }) {
   const [count, setCount] = useState(3);
   const [isGameStarted, setIsGameStarted] = useState(false);
@@ -45,11 +46,6 @@ export default function ClientGame({ setGameState, score, setScore }) {
           2;
         // Subtract top and bottom borders for inner content height
         const innerHeight = offsetHeight - 2 * borderWidth;
-        console.log({
-          offsetHeight,
-          borderWidth,
-          innerHeight,
-        }); // Debug dimensions
         setFieldSize({ width: offsetWidth, height: innerHeight });
         // Initialize paddle positions (centered vertically within inner height)
         leftPaddleY.current = (innerHeight - paddleHeight) / 2;
@@ -57,9 +53,11 @@ export default function ClientGame({ setGameState, score, setScore }) {
         updatePaddlePositions();
       }
     };
-
     updateFieldSize();
+
+    // Event listener to update field size on window resize
     window.addEventListener("resize", updateFieldSize);
+    // Cleanup event listener on unmount
     return () => window.removeEventListener("resize", updateFieldSize);
   }, [isGameStarted]);
 
@@ -98,7 +96,7 @@ export default function ClientGame({ setGameState, score, setScore }) {
   useEffect(() => {
     const handleMouseDown = (e) => {
       const mouseX = e.clientX;
-      // Click on left half of window grabs left paddle, right half grabs right paddle
+      // Left half of window grabs left paddle, right half grabs right paddle
       if (mouseX < window.innerWidth / 2) {
         isDragging.current.left = true;
       } else {
@@ -162,11 +160,13 @@ export default function ClientGame({ setGameState, score, setScore }) {
       }
     };
 
+    // Add event listeners for mouse actions
     if (isGameStarted) {
       window.addEventListener("mousedown", handleMouseDown);
       window.addEventListener("mouseup", handleMouseUp);
       window.addEventListener("mousemove", handleMouseMove);
 
+      // Cleanup event listeners on unmount
       return () => {
         window.removeEventListener("mousedown", handleMouseDown);
         window.removeEventListener("mouseup", handleMouseUp);
@@ -283,6 +283,7 @@ export default function ClientGame({ setGameState, score, setScore }) {
       ballRef.current.style.transform = `translate(${position.current.x}px, ${position.current.y}px)`;
     }
 
+    // Request next animation frame
     lastUpdateTime.current = timestamp;
     animationFrameId.current = requestAnimationFrame(moveBall);
   };
@@ -293,6 +294,7 @@ export default function ClientGame({ setGameState, score, setScore }) {
       lastUpdateTime.current = 0;
       animationFrameId.current = requestAnimationFrame(moveBall);
     }
+    // Cleanup animation frame on unmount
     return () => cancelAnimationFrame(animationFrameId.current);
   }, [isGameStarted, fieldSize, score]);
 

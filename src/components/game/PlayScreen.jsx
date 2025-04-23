@@ -1,7 +1,7 @@
 import ClientGame from "@/components/game/ClientGame";
 import Header from "@/components/Header";
 
-export default function Play({ setGameState, score, setScore }) {
+export default function PlayScreen({ setGameState, score, setScore }) {
   return (
     <>
       <Header display="game" />
