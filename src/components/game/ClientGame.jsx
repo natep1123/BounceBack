@@ -117,7 +117,6 @@ export default function ClientGame({ setGameState, score, setScore }) {
         const offset = 1; // Empirical 1px offset to prevent bottom overlap
 
         if (isDragging.current.left) {
-          // Move left paddle
           const newLeftY = Math.max(
             0,
             Math.min(
@@ -127,7 +126,6 @@ export default function ClientGame({ setGameState, score, setScore }) {
           );
           deltaY = newLeftY - leftPaddleY.current;
           leftPaddleY.current = newLeftY;
-          // Move right paddle in opposite direction
           rightPaddleY.current = Math.max(
             0,
             Math.min(
@@ -136,7 +134,6 @@ export default function ClientGame({ setGameState, score, setScore }) {
             )
           );
         } else if (isDragging.current.right) {
-          // Move right paddle
           const newRightY = Math.max(
             0,
             Math.min(
@@ -146,7 +143,6 @@ export default function ClientGame({ setGameState, score, setScore }) {
           );
           deltaY = newRightY - rightPaddleY.current;
           rightPaddleY.current = newRightY;
-          // Move left paddle in opposite direction
           leftPaddleY.current = Math.max(
             0,
             Math.min(
@@ -160,17 +156,94 @@ export default function ClientGame({ setGameState, score, setScore }) {
       }
     };
 
-    // Add event listeners for mouse actions
+    // Touch event handlers
+    const handleTouchStart = (e) => {
+      e.preventDefault(); // Prevent scrolling/zooming
+      const touch = e.touches[0]; // Use first touch point
+      const touchX = touch.clientX;
+      // Left half of screen grabs left paddle, right half grabs right paddle
+      if (touchX < window.innerWidth / 2) {
+        isDragging.current.left = true;
+      } else {
+        isDragging.current.right = true;
+      }
+    };
+
+    const handleTouchEnd = () => {
+      isDragging.current.left = false;
+      isDragging.current.right = false;
+    };
+
+    const handleTouchMove = (e) => {
+      e.preventDefault(); // Prevent scrolling/zooming
+      if (isDragging.current.left || isDragging.current.right) {
+        const touch = e.touches[0]; // Use first touch point
+        const fieldRect = fieldRef.current.getBoundingClientRect();
+        const touchY = touch.clientY - fieldRect.top;
+        let deltaY = 0;
+        const offset = 1; // Empirical 1px offset to prevent bottom overlap
+
+        if (isDragging.current.left) {
+          const newLeftY = Math.max(
+            0,
+            Math.min(
+              touchY - paddleHeight / 2,
+              fieldSize.height - paddleHeight - offset
+            )
+          );
+          deltaY = newLeftY - leftPaddleY.current;
+          leftPaddleY.current = newLeftY;
+          rightPaddleY.current = Math.max(
+            0,
+            Math.min(
+              fieldSize.height - paddleHeight - offset,
+              rightPaddleY.current - deltaY
+            )
+          );
+        } else if (isDragging.current.right) {
+          const newRightY = Math.max(
+            0,
+            Math.min(
+              touchY - paddleHeight / 2,
+              fieldSize.height - paddleHeight - offset
+            )
+          );
+          deltaY = newRightY - rightPaddleY.current;
+          rightPaddleY.current = newRightY;
+          leftPaddleY.current = Math.max(
+            0,
+            Math.min(
+              fieldSize.height - paddleHeight - offset,
+              leftPaddleY.current - deltaY
+            )
+          );
+        }
+
+        updatePaddlePositions();
+      }
+    };
+
+    // Add event listeners for mouse and touch actions
     if (isGameStarted) {
+      // Mouse events
       window.addEventListener("mousedown", handleMouseDown);
       window.addEventListener("mouseup", handleMouseUp);
       window.addEventListener("mousemove", handleMouseMove);
+      // Touch events
+      window.addEventListener("touchstart", handleTouchStart, {
+        passive: false,
+      });
+      window.addEventListener("touchend", handleTouchEnd);
+      window.addEventListener("touchmove", handleTouchMove, { passive: false });
 
       // Cleanup event listeners on unmount
       return () => {
         window.removeEventListener("mousedown", handleMouseDown);
         window.removeEventListener("mouseup", handleMouseUp);
         window.removeEventListener("mousemove", handleMouseMove);
+        window.removeEventListener("touchstart", handleTouchStart);
+        window.removeEventListener("touchend", handleTouchEnd);
+        window.removeEventListener("touchmove", handleTouchMove);
       };
     }
   }, [isGameStarted, fieldSize]);

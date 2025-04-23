@@ -48,7 +48,7 @@ export default function OverScreen({ setGameState, score, setScore }) {
         >
           Play Again?
         </button>
-        <span className="test-white italic mb-4">
+        <span className="test-white italic mb-4 text-center">
           Returning to start screen in {timeLeft} seconds
         </span>
         <OverCard score={score} />
