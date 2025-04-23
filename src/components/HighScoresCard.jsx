@@ -1,16 +1,6 @@
 "use client";
-import { use, useEffect, useState } from "react";
 
 export default function HighScoresCard({ highscores }) {
-  const [loading, setLoading] = useState(true);
-
-  // Manage loading state
-  useEffect(() => {
-    if (highscores?.scores.length !== 0) {
-      setLoading(false);
-    }
-  }, [highscores]);
-
   return (
     <div className="w-full max-w-md bg-gray-800 rounded-lg shadow-lg p-6 mb-4">
       <h3 className="text-2xl font-semibold text-center text-orange-400 mb-4">
@@ -39,10 +29,9 @@ export default function HighScoresCard({ highscores }) {
         </div>
       ) : (
         <p className="text-center text-gray-400">
-          {loading ? "Loading..." : null}
           {highscores?.scores.length === 0
             ? "Play a game to earn a score!"
-            : null}
+            : "Loading..."}
         </p>
       )}
 
