@@ -112,7 +112,7 @@ export default function BallAnimation({ setGameState }) {
     <div className="flex flex-col items-center mt-4">
       <div
         ref={boxRef}
-        className="w-[70vw] h-[45vh] mw-[1000px] mh-[300px] border-2 border-pink-600 bg-gray-800 relative"
+        className="w-[70vw] h-[45vh] border-2 border-pink-600 bg-gray-800 relative"
       >
         <div
           ref={ballRef}

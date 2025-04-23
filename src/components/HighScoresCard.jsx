@@ -2,7 +2,7 @@
 
 export default function HighScoresCard({ highscores }) {
   return (
-    <div className="w-full max-w-md bg-gray-800 rounded-lg shadow-lg p-6 mb-4">
+    <div className="w-full max-w-md bg-gray-800 rounded-lg shadow-lg p-6 mb-2">
       <h3 className="text-2xl font-semibold text-center text-orange-400 mb-4">
         High Scores
       </h3>
