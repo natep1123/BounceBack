@@ -35,7 +35,11 @@ export default function OverScreen({ setGameState, score, setScore }) {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      <Header display="navbar" />
+      <Header
+        display="navbar"
+        setGameState={setGameState}
+        setScore={setScore}
+      />
       <main className="flex flex-col items-center min-h-[calc(100vh-4rem)] px-4">
         <h2>Game Over!</h2>
         <button

@@ -12,7 +12,10 @@ export default function Game() {
   const [score, setScore] = useState(0);
   return (
     <>
+      {/* Start Screen */}
       {gameState === "start" && <StartScreen setGameState={setGameState} />}
+
+      {/* Play Screen */}
       {gameState === "play" && (
         <PlayScreen
           setGameState={setGameState}
@@ -20,6 +23,8 @@ export default function Game() {
           setScore={setScore}
         />
       )}
+
+      {/* Over Screen */}
       {gameState === "over" && (
         <OverScreen
           setGameState={setGameState}
