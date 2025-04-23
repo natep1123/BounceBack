@@ -16,44 +16,46 @@ export default function NavBar() {
       console.error("Logout error:", error);
     }
   };
+
   return (
-    <>
-      <nav className="py-2 border-t-2 border-pink-600">
-        <ul className="flex items-center justify-around">
-          <li>
-            <Link href="/profile" className="text-orange-300">
-              Profile
-            </Link>
-          </li>
-          <li>
-            <Link href="/leaderboard" className="text-orange-300">
-              Leaderboard
-            </Link>
-          </li>
-          <li>
-            <Link href="/game" className="flex items-center">
-              <img
-                src="logo.png"
-                alt="Start"
-                className="h-10 w-auto object-contain "
-              />
-            </Link>
-          </li>
-          <li>
-            <Link href="/about" className="text-orange-300">
-              About
-            </Link>
-          </li>
-          <li>
-            <button
-              onClick={handleLogout}
-              className="text-orange-300 cursor-pointer"
-            >
-              Logout
-            </button>
-          </li>
-        </ul>
-      </nav>
-    </>
+    <nav className="py-2 border-t-2 border-pink-600">
+      <ul className="flex items-center justify-between w-full">
+        <li className="flex-1 text-center">
+          <Link href="/profile" className="text-orange-300 inline-block px-2">
+            Profile
+          </Link>
+        </li>
+        <li className="flex-1 text-center">
+          <Link
+            href="/leaderboard"
+            className="text-orange-300 inline-block px-2"
+          >
+            Leaderboard
+          </Link>
+        </li>
+        <li className="flex-1 text-center">
+          <Link href="/game" className="flex items-center justify-center">
+            <img
+              src="logo.png"
+              alt="Start"
+              className="h-10 w-auto object-contain"
+            />
+          </Link>
+        </li>
+        <li className="flex-1 text-center">
+          <Link href="/about" className="text-orange-300 inline-block px-2">
+            About
+          </Link>
+        </li>
+        <li className="flex-1 text-center">
+          <button
+            onClick={handleLogout}
+            className="text-orange-300 cursor-pointer inline-block px-2"
+          >
+            Logout
+          </button>
+        </li>
+      </ul>
+    </nav>
   );
 }
