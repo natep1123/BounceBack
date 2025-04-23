@@ -4,10 +4,10 @@ import { useEffect, useRef } from "react";
 
 // This component animates a ball bouncing around a box.
 export default function BallAnimation({ setGameState }) {
-  const ballSize = 12;
+  const ballSize = 10;
   const boxRef = useRef(null);
   const ballRef = useRef(null);
-  const velocity = useRef({ dx: 6, dy: 3 });
+  const velocity = useRef({ dx: 8, dy: 4 });
   const position = useRef({ x: 0, y: 0 });
   const animationFrameId = useRef(0);
   const boxSize = useRef({ width: 0, height: 0 });
@@ -112,7 +112,7 @@ export default function BallAnimation({ setGameState }) {
     <div className="flex flex-col items-center mt-4">
       <div
         ref={boxRef}
-        className="w-[90vw] h-[60vh] border-2 border-pink-600 bg-gray-800 relative"
+        className="w-[70vw] h-[45vh] border-2 border-pink-600 bg-gray-800 relative"
       >
         <div
           ref={ballRef}
