@@ -5,7 +5,7 @@ import ClientGame from "./ClientGame";
 import MobileClientGame from "./MobileClientGame";
 import Header from "@/components/Header";
 
-export default function PlayScreen({ setGameState, score, setScore }) {
+export default function PlayScreen({ setGameState, score, setScore, isGuest }) {
   const [isMobile, setIsMobile] = useState(false);
 
   // Detect mobile device based on window width
@@ -27,12 +27,14 @@ export default function PlayScreen({ setGameState, score, setScore }) {
             setGameState={setGameState}
             score={score}
             setScore={setScore}
+            isGuest={isGuest}
           />
         ) : (
           <ClientGame
             setGameState={setGameState}
             score={score}
             setScore={setScore}
+            isGuest={isGuest}
           />
         )}
       </main>

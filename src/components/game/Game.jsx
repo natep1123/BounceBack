@@ -7,9 +7,10 @@ import OverScreen from "./OverScreen";
 
 // This component manages score & game states and renders the appropriate screen.
 // It leverages prop drilling to easily manage state from other components.
-export default function Game() {
+export default function Game({ isGuest }) {
   const [gameState, setGameState] = useState("start");
   const [score, setScore] = useState(0);
+
   return (
     <>
       {/* Start Screen */}
@@ -21,6 +22,7 @@ export default function Game() {
           setGameState={setGameState}
           score={score}
           setScore={setScore}
+          isGuest={isGuest}
         />
       )}
 
@@ -30,6 +32,7 @@ export default function Game() {
           setGameState={setGameState}
           score={score}
           setScore={setScore}
+          isGuest={isGuest}
         />
       )}
     </>

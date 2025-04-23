@@ -4,11 +4,7 @@ import Header from "@/components/Header";
 import LeaderboardCard from "@/components/LeaderboardCard";
 
 export default async function LeaderboardPage() {
-  // Auth check
-  const session = await auth();
-  if (!session) {
-    redirect("/");
-  }
+  // No auth, so guests can access
   return (
     <>
       <Header display="navbar" />

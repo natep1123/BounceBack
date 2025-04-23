@@ -103,12 +103,21 @@ export default function LoginForm() {
               {error}
             </div>
           )}
-          <Link
-            className="text-sm text-right text-orange-300"
-            href={"/register"}
-          >
-            Don't have an account? <span className="underline">Register</span>
-          </Link>
+          <div className="text-center text-orange-300">
+            <span className="test-white">Don't have an account?</span>
+            <ul>
+              <li className="mt-2">
+                <Link href={"/register"} className="underline text-orange-300">
+                  Register
+                </Link>
+              </li>
+              <li className="mt-2">
+                <Link href={"/game"} className="underline text-orange-300">
+                  Play as Guest
+                </Link>
+              </li>
+            </ul>
+          </div>
         </form>
       </div>
     </div>

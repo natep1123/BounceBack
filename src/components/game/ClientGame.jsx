@@ -4,7 +4,7 @@ import { saveScore } from "@/lib/dbLogic";
 import { useEffect, useRef, useState } from "react";
 
 // This component handles the client-side game logic for a single-player pong-like game.
-export default function ClientGame({ setGameState, score, setScore }) {
+export default function ClientGame({ setGameState, score, setScore, isGuest }) {
   const [count, setCount] = useState(3);
   const [isGameStarted, setIsGameStarted] = useState(false);
   const ballSize = 10;
@@ -386,7 +386,10 @@ export default function ClientGame({ setGameState, score, setScore }) {
   // Handle game over
   async function handleGameOver(finalScore) {
     cancelAnimationFrame(animationFrameId.current);
-    await saveScore(finalScore);
+    if (!isGuest) {
+      console.log(isGuest);
+      await saveScore(finalScore);
+    }
     setTimeout(() => {
       setGameState("over");
     }, 1000);

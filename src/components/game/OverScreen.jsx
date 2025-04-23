@@ -1,10 +1,12 @@
 "use client";
 
 import Header from "@/components/Header";
-import OverCard from "@/components/game/OverCard";
+import { getHighscores } from "@/lib/dbLogic";
+import FinalScoreCard from "./FinalScoreCard";
+import HighScoresCard from "../HighScoresCard";
 import { useState, useEffect } from "react";
 
-export default function OverScreen({ setGameState, score, setScore }) {
+export default function OverScreen({ setGameState, score, setScore, isGuest }) {
   const [timeLeft, setTimeLeft] = useState(120); // 2 minutes
 
   // Handle button click to reset game state, score, and timer
@@ -33,6 +35,23 @@ export default function OverScreen({ setGameState, score, setScore }) {
     return () => clearInterval(timer);
   }, [setGameState, setScore]);
 
+  const [highscores, setHighscores] = useState(null);
+
+  // Fetch highscores data
+  useEffect(() => {
+    if (isGuest) return;
+
+    const fetchData = async () => {
+      try {
+        const highscoresData = await getHighscores();
+        setHighscores(highscoresData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <Header
@@ -51,7 +70,21 @@ export default function OverScreen({ setGameState, score, setScore }) {
         <span className="test-white italic mb-4 text-center px-2">
           Returning to start screen in {timeLeft} seconds
         </span>
-        <OverCard score={score} />
+        <FinalScoreCard finalScore={score} />
+
+        {/* Highscores Display for Users*/}
+        {!isGuest && <HighScoresCard highscores={highscores} />}
+
+        {/* Highscores Display for Guests */}
+        {isGuest && (
+          <div className="space-y-4">
+            <div className="flex items-center bg-gray-700 rounded-md p-3">
+              <span className="text-lg font-medium text-white">
+                Create an account to save scores!
+              </span>
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );
