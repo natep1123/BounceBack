@@ -3,25 +3,25 @@
 import { saveScore } from "@/lib/dbLogic";
 import { useEffect, useRef, useState } from "react";
 
-// This component handles the client-side game logic for a single-player pong-like game optimized for mobile devices.
+// This component handles the client-side game logic for a single-player pong-like game optimized for mobile devices with inverse paddle control.
 export default function MobileClientGame({ setGameState, score, setScore }) {
   const [count, setCount] = useState(3);
   const [isGameStarted, setIsGameStarted] = useState(false);
-  const ballSize = 8; // Smaller ball for mobile
-  const paddleWidth = 6; // Thinner paddles
-  const paddleHeight = 60; // Shorter paddles
+  const ballSize = 8;
+  const paddleWidth = 6;
+  const paddleHeight = 60;
   const fieldRef = useRef(null);
   const ballRef = useRef(null);
   const leftPaddleRef = useRef(null);
   const rightPaddleRef = useRef(null);
   const [fieldSize, setFieldSize] = useState({ width: 0, height: 0 });
   const position = useRef({ x: 0, y: 0 });
-  const velocity = useRef({ dx: 2, dy: 1 }); // Slower velocity for mobile
+  const velocity = useRef({ dx: 2, dy: 1 });
   const leftPaddleY = useRef(0);
   const rightPaddleY = useRef(0);
   const lastUpdateTime = useRef(0);
   const animationFrameId = useRef(0);
-  const touchId = useRef(null); // Track specific touch identifier
+  const touchId = useRef(null);
 
   // Countdown effect
   useEffect(() => {
@@ -86,37 +86,12 @@ export default function MobileClientGame({ setGameState, score, setScore }) {
     }
   };
 
-  // Handle touch input for mobile
+  // Handle touch input for mobile with inverse paddle control
   useEffect(() => {
     const handleTouchStart = (e) => {
       e.preventDefault();
       const touch = e.touches[0];
       touchId.current = touch.identifier;
-      const touchX = touch.clientX;
-      const fieldRect = fieldRef.current.getBoundingClientRect();
-      const touchY = touch.clientY - fieldRect.top;
-      const offset = 1;
-
-      if (touchX < window.innerWidth / 2) {
-        // Left paddle
-        leftPaddleY.current = Math.max(
-          0,
-          Math.min(
-            touchY - paddleHeight / 2,
-            fieldSize.height - paddleHeight - offset
-          )
-        );
-      } else {
-        // Right paddle
-        rightPaddleY.current = Math.max(
-          0,
-          Math.min(
-            touchY - paddleHeight / 2,
-            fieldSize.height - paddleHeight - offset
-          )
-        );
-      }
-      updatePaddlePositions();
     };
 
     const handleTouchMove = (e) => {
@@ -129,23 +104,42 @@ export default function MobileClientGame({ setGameState, score, setScore }) {
       const fieldRect = fieldRef.current.getBoundingClientRect();
       const touchY = touch.clientY - fieldRect.top;
       const offset = 1;
+      let deltaY = 0;
 
       if (touchX < window.innerWidth / 2) {
-        // Left paddle
-        leftPaddleY.current = Math.max(
+        // Left paddle control
+        const newLeftY = Math.max(
           0,
           Math.min(
             touchY - paddleHeight / 2,
             fieldSize.height - paddleHeight - offset
           )
         );
-      } else {
-        // Right paddle
+        deltaY = newLeftY - leftPaddleY.current;
+        leftPaddleY.current = newLeftY;
         rightPaddleY.current = Math.max(
+          0,
+          Math.min(
+            fieldSize.height - paddleHeight - offset,
+            rightPaddleY.current - deltaY
+          )
+        );
+      } else {
+        // Right paddle control
+        const newRightY = Math.max(
           0,
           Math.min(
             touchY - paddleHeight / 2,
             fieldSize.height - paddleHeight - offset
+          )
+        );
+        deltaY = newRightY - rightPaddleY.current;
+        rightPaddleY.current = newRightY;
+        leftPaddleY.current = Math.max(
+          0,
+          Math.min(
+            fieldSize.height - paddleHeight - offset,
+            leftPaddleY.current - deltaY
           )
         );
       }
@@ -207,12 +201,12 @@ export default function MobileClientGame({ setGameState, score, setScore }) {
       position.current.x = leftPaddleRect.right + 0.1;
       setScore((prev) => prev + 1);
       const newScore = score + 1;
-      if (newScore < 20) {
+      if (newScore < 25) {
         velocity.current.dx *= 1.05;
         velocity.current.dy *= 1.05;
       }
-      velocity.current.dx = Math.max(-6, Math.min(6, velocity.current.dx));
-      velocity.current.dy = Math.max(-3, Math.min(3, velocity.current.dy));
+      velocity.current.dx = Math.max(-7, Math.min(7, velocity.current.dx));
+      velocity.current.dy = Math.max(-3.5, Math.min(3.5, velocity.current.dy));
     }
 
     const rightPaddleRect = {
@@ -232,12 +226,12 @@ export default function MobileClientGame({ setGameState, score, setScore }) {
       position.current.x = rightPaddleRect.left - ballSize - 0.1;
       setScore((prev) => prev + 1);
       const newScore = score + 1;
-      if (newScore < 20) {
+      if (newScore < 25) {
         velocity.current.dx *= 1.05;
         velocity.current.dy *= 1.05;
       }
-      velocity.current.dx = Math.max(-6, Math.min(6, velocity.current.dx));
-      velocity.current.dy = Math.max(-3, Math.min(3, velocity.current.dy));
+      velocity.current.dx = Math.max(-7, Math.min(7, velocity.current.dx));
+      velocity.current.dy = Math.max(-3.5, Math.min(3.5, velocity.current.dy));
     }
 
     if (

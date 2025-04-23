@@ -45,7 +45,7 @@ export default function Profile({ username, email }) {
   return (
     <div className="min-h-screen bg-gray-900 text-white text-center">
       <Header display="navbar" />
-      <main className="flex flex-col items-center min-h-[calc(100vh-4rem)] px-4 mb-2">
+      <main className="flex flex-col items-center min-h-[calc(100vh-4rem)] p-4">
         <h2>{username}'s Profile</h2>
         <UserInfoCard username={username} email={email} />
         <HighScoresCard highscores={highscores} />

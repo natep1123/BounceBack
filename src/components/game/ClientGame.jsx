@@ -7,9 +7,9 @@ import { useEffect, useRef, useState } from "react";
 export default function ClientGame({ setGameState, score, setScore }) {
   const [count, setCount] = useState(3);
   const [isGameStarted, setIsGameStarted] = useState(false);
-  const ballSize = 12;
-  const paddleWidth = 10;
-  const paddleHeight = 80;
+  const ballSize = 10;
+  const paddleWidth = 8;
+  const paddleHeight = 65;
   const fieldRef = useRef(null);
   const ballRef = useRef(null);
   const leftPaddleRef = useRef(null);
@@ -284,12 +284,12 @@ export default function ClientGame({ setGameState, score, setScore }) {
       setScore((prev) => prev + 1);
       // Velocity adjustments
       const newScore = score + 1;
-      if (newScore < 20) {
+      if (newScore < 25) {
         velocity.current.dx *= 1.05;
         velocity.current.dy *= 1.05;
       }
-      velocity.current.dx = Math.max(-8, Math.min(8, velocity.current.dx));
-      velocity.current.dy = Math.max(-4, Math.min(4, velocity.current.dy));
+      velocity.current.dx = Math.max(-10, Math.min(10, velocity.current.dx));
+      velocity.current.dy = Math.max(-5, Math.min(5, velocity.current.dy));
     }
 
     // Right paddle collision
@@ -311,12 +311,12 @@ export default function ClientGame({ setGameState, score, setScore }) {
       setScore((prev) => prev + 1);
       // Velocity adjustments
       const newScore = score + 1;
-      if (newScore < 20) {
+      if (newScore < 25) {
         velocity.current.dx *= 1.05;
         velocity.current.dy *= 1.05;
       }
-      velocity.current.dx = Math.max(-8, Math.min(8, velocity.current.dx));
-      velocity.current.dy = Math.max(-4, Math.min(4, velocity.current.dy));
+      velocity.current.dx = Math.max(-10, Math.min(10, velocity.current.dx));
+      velocity.current.dy = Math.max(-5, Math.min(5, velocity.current.dy));
     }
 
     // Horizontal bounds check (left/right walls)
@@ -385,13 +385,13 @@ export default function ClientGame({ setGameState, score, setScore }) {
       <h2>Score: {score}</h2>
       <div className="flex flex-col items-center mt-2">
         {count > 0 ? (
-          <div className="flex items-center justify-center h-[45vh] w-[70vw] bg-gray-800 border-2 border-pink-600">
+          <div className="flex items-center justify-center h-[60vh] w-[90vw] bg-gray-800 border-2 border-pink-600">
             <span className="text-6xl font-bold text-white">{count}</span>
           </div>
         ) : (
           <div
             ref={fieldRef}
-            className="w-[70vw] h-[45vh] border-2 border-pink-600 bg-gray-800 relative"
+            className="w-[90vw] h-[60vh] border-2 border-pink-600 bg-gray-800 relative"
           >
             <div
               ref={leftPaddleRef}

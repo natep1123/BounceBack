@@ -12,7 +12,7 @@ export default async function LeaderboardPage() {
   return (
     <>
       <Header display="navbar" />
-      <main className="flex flex-col items-center mb-2">
+      <main className="flex flex-col items-center p-4">
         <h2>Leaderboard</h2>
         <LeaderboardCard />
       </main>
