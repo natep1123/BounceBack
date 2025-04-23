@@ -21,8 +21,7 @@ export default function PlayScreen({ setGameState, score, setScore }) {
 
   return (
     <>
-      <Header display="game" />
-      <main className="flex flex-col items-center min-h-screen bg-gray-900 mb-2">
+      <main className="flex flex-col items-center justify-center min-h-screen bg-gray-900 mb-2">
         {isMobile ? (
           <MobileClientGame
             setGameState={setGameState}
