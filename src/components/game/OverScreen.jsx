@@ -40,7 +40,7 @@ export default function OverScreen({ setGameState, score, setScore }) {
         setGameState={setGameState}
         setScore={setScore}
       />
-      <main className="flex flex-col items-center min-h-[calc(100vh-4rem)] px-4">
+      <main className="flex flex-col items-center min-h-[calc(100vh-4rem)] px-4 mb-2">
         <h2>Game Over!</h2>
         <button
           className="mb-4 px-4 py-2 text-white bg-pink-600 border-2 border-gray-800 rounded-lg cursor-pointer"
@@ -48,7 +48,7 @@ export default function OverScreen({ setGameState, score, setScore }) {
         >
           Play Again?
         </button>
-        <span className="test-white italic mb-4 text-center">
+        <span className="test-white italic mb-4 text-center px-2">
           Returning to start screen in {timeLeft} seconds
         </span>
         <OverCard score={score} />

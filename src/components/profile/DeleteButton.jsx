@@ -47,7 +47,7 @@ export default function DeleteButton({
   return (
     <button
       onClick={handleDelete}
-      className="mb-4 bg-red-600 text-white font-bold rounded-md px-6 py-3 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+      className="bg-red-600 text-white font-bold rounded-md px-6 py-3 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
       disabled={loading}
     >
       {loading ? "Deleting..." : "Delete Account"}

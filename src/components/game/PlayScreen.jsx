@@ -5,7 +5,7 @@ export default function PlayScreen({ setGameState, score, setScore }) {
   return (
     <>
       <Header display="game" />
-      <main className="flex flex-col items-center min-h-screen bg-gray-900">
+      <main className="flex flex-col items-center min-h-screen bg-gray-900 mb-2">
         <ClientGame
           setGameState={setGameState}
           score={score}
