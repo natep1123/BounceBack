@@ -1,4 +1,4 @@
-# 🎮 BounceBack!
+# 🏓 BounceBack!
 
 Welcome to **BounceBack!**, a singleplayer Pong-inspired game where you test your reflexes by bouncing a ball against a paddle. Built with modern web technologies, this full-stack game offers dynamic animations, a responsive UI, and exciting features like user profiles, leaderboards, and more!
 Click here to play!
