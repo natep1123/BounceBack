@@ -12,7 +12,7 @@ export default async function Home() {
   return (
     <>
       <Header display="welcome" />
-      <main>
+      <main className="p-4">
         <LoginForm />
       </main>
     </>

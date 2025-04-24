@@ -12,7 +12,7 @@ export default async function RegisterPage() {
   return (
     <>
       <Header display="welcome" />
-      <main>
+      <main className="p-4">
         <RegisterForm />
       </main>
     </>

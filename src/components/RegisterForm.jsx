@@ -77,7 +77,7 @@ export default function RegisterForm() {
         <img src="/logo.png" alt="Logo" className="h-26 w-auto mb-4 mt-4" />
       )}
       <div
-        className={`shadow-xl p-6 rounded-xl bg-gray-800 border-t-4 border-purple-400 transition-opacity ${
+        className={`shadow-xl p-4 rounded-xl bg-gray-800 border-t-4 border-purple-400 transition-opacity ${
           loading ? "opacity-0" : "opacity-100"
         }`}
       >
@@ -114,10 +114,14 @@ export default function RegisterForm() {
             </div>
           )}
           <span className="text-center text-orange-300">
-            Already have an account?{" "}
-            <Link href={"/"} className="underline">
-              Login
-            </Link>
+            Already have an account?
+            <ul>
+              <li className="mt-2">
+                <Link href={"/"} className="underline">
+                  Login
+                </Link>
+              </li>
+            </ul>
           </span>
         </form>
       </div>
