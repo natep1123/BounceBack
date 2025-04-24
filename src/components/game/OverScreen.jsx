@@ -77,7 +77,7 @@ export default function OverScreen({ setGameState, score, setScore, isGuest }) {
 
         {/* Highscores Display for Guests */}
         {isGuest && (
-          <div className="space-y-4">
+          <div className="space-y-4 text-center">
             <div className="flex items-center bg-gray-700 rounded-md p-3">
               <span className="text-lg font-medium text-white">
                 Create an account to save scores!
