@@ -1,4 +1,4 @@
-# 🏓 BounceBack!
+# 🏓 [BounceBack!](https://github.com/natep1123/bounceback)
 
 Welcome to **BounceBack!**, a singleplayer Pong-inspired game where you test your reflexes by bouncing a ball against a paddle. Built with modern web technologies, this full-stack game offers dynamic animations, a responsive UI, and exciting features like user profiles, leaderboards, and more!
 Click here to play!
@@ -10,15 +10,15 @@ _[Click here to play!](https://bounceback-zeta.vercel.app/)_
 <table>
   <tr>
     <td style="padding: 20px;">
-      <img src="https://drive.google.com/uc?export=view&id=11PV-ociM1-M7oivNpbBqimppa6gSoll6" alt="Start Screen" width="1200px"/>
+      <img src="https://drive.google.com/uc?export=view&id=1s4XvReBh2pBAJrl9DSt7VHZnH8fijsL5" alt="Login Page" width="1200px" />
     </td>
   </tr>
   <tr>
     <td style="padding: 20px;">
-      <img src="https://drive.google.com/uc?export=view&id=1SRNxpMGoKmbEObCDbucx68U7-Xfet8JV" alt="About the Game" width="1200px" />
+      <img src="https://drive.google.com/uc?export=view&id=11PV-ociM1-M7oivNpbBqimppa6gSoll6" alt="Start Screen" width="1200px"/>
     </td>
   </tr>
-  </table>
+</table>
 
 ## 🎯 Features
 
