@@ -43,11 +43,11 @@ _[Click here to play!](https://bounceback-zeta.vercel.app/)_
 
 Contributions are welcome! If you'd like to improve BounceBack!, please follow these steps:
 
-- Fork the repository.
-- Create a new branch (git checkout -b feature/your-feature).
-- Make your changes and commit (git commit -m "Add your feature").
-- Push to the branch (git push origin feature/your-feature).
-- Open a Pull Request.
+- **Fork the repository.**
+- **Create a new branch** (git checkout -b feature/your-feature).
+- **Make your changes and commit** (git commit -m "Add your feature").
+- **Push to the branch** (git push origin feature/your-feature).
+- **Open a Pull Request.**
 
 ## 📬 Contact
 
