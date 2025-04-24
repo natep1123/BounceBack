@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🎮 BounceBack!
 
-## Getting Started
+Welcome to **BounceBack!**, a singleplayer Pong-inspired game where you test your reflexes by bouncing a ball against a paddle. Built with modern web technologies, this full-stack game offers dynamic animations, a responsive UI, and exciting features like user profiles, leaderboards, and more!
+Click here to play!
 
-First, run the development server:
+## 📸 Screenshots
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+_[Click here to play!](https://bounceback-zeta.vercel.app/)_
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<table>
+  <tr>
+    <td style="padding: 20px;">
+      <img src="https://drive.google.com/uc?export=view&id=11PV-ociM1-M7oivNpbBqimppa6gSoll6" alt="Start Screen" width="1200px"/>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 20px;">
+      <img src="https://drive.google.com/uc?export=view&id=1SRNxpMGoKmbEObCDbucx68U7-Xfet8JV" alt="About the Game" width="1200px" />
+    </td>
+  </tr>
+  </table>
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🎯 Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Interactive Gameplay:** Control the paddle to bounce the ball and keep it in play!
+- **Dynamic Animations:** Smooth and engaging visuals for an immersive experience.
+- **Responsive UI:** Play seamlessly on desktop or mobile devices.
+- **User Profiles:** Create a profile with GitHub authentication or play as a guest.
+- **Highscore Storage:** Track your best scores and compete with others.
+- **Leaderboard:** See how you stack up against other players.
+- **About Page:** Learn more about the game and its development.
 
-## Learn More
+## 🛠️ Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Frontend:** Next.js, React.js
+- **Authentication:** NextAuth (GitHub login support)
+- **Backend:** MongoDB, Mongoose
+- **API Requests:** Axios
+- **Password Hashing:** Bcryptjs
+- **Deployment:** Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🤝 Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Contributions are welcome! If you'd like to improve BounceBack!, please follow these steps:
 
-## Deploy on Vercel
+- Fork the repository.
+- Create a new branch (git checkout -b feature/your-feature).
+- Make your changes and commit (git commit -m "Add your feature").
+- Push to the branch (git push origin feature/your-feature).
+- Open a Pull Request.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📬 Contact
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Have questions or feedback?
+
+- **Let’s Connect!**
+- **[nathaniel.perry1123@gmail.com](mailto:nathaniel.perry1123@gmail.com)**
+- **[LinkedIn](https://www.linkedin.com/in/nathaniel-perry-646bb4326)**
