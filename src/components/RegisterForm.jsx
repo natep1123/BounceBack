@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { registerUser } from "@/lib/dbLogic";
 import axios from "axios";
+import Image from "next/image";
 import Loader from "./Loader";
 
 export default function RegisterForm() {
@@ -47,11 +49,11 @@ export default function RegisterForm() {
 
     // API call
     try {
-      const response = await axios.post("/api/register", {
-        username: trimmedUsername,
-        email: trimmedEmail,
-        password: trimmedPassword,
-      });
+      const response = await registerUser(
+        trimmedUsername,
+        trimmedEmail,
+        trimmedPassword
+      );
 
       if (response.status === 201) {
         const form = e.target;
@@ -74,7 +76,13 @@ export default function RegisterForm() {
     <div className="flex flex-col items-center min-h-screen bg-gray-900 relative">
       {loading && <Loader isLoading={loading} />}
       {!loading && (
-        <img src="/logo.png" alt="Logo" className="h-26 w-auto mb-4 mt-4" />
+        <Image
+          src="/logo.png"
+          alt="Logo"
+          height={775}
+          width={517}
+          className="h-26 w-auto mb-4 mt-4"
+        />
       )}
       <div
         className={`shadow-xl p-4 rounded-xl bg-gray-800 border-t-4 border-purple-400 transition-opacity ${

@@ -1,6 +1,5 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
-import Header from "@/components/Header";
 import Profile from "@/components/profile/Profile";
 
 export default async function ProfilePage() {

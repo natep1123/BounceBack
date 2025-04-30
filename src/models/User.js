@@ -1,23 +1,55 @@
 import mongoose from "mongoose";
 
-// This is the schema for the User model.
+// User schema supporting both guest and registered users
 const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
-      required: [true, "Username is required"],
       unique: true,
+      sparse: true, // Allows multiple null values for guests
       minlength: [3, "Username must be at least 3 characters long"],
       maxlength: [20, "Username cannot exceed 20 characters"],
+      required: [
+        function () {
+          return !this.isGuest;
+        },
+        "Username is required for registered users",
+      ],
     },
     email: {
       type: String,
-      required: [true, "Email is required"],
       unique: true,
+      sparse: true, // Allows multiple null values for guests
+      required: [
+        function () {
+          return !this.isGuest;
+        },
+        "Email is required for registered users",
+      ],
     },
     password: {
       type: String,
-      required: [true, "Password is required"],
+      required: [
+        function () {
+          return !this.isGuest;
+        },
+        "Password is required for registered users",
+      ],
+    },
+    isGuest: {
+      type: Boolean,
+      default: false,
+    },
+    guestId: {
+      type: String,
+      unique: true,
+      sparse: true, // Allows null for registered users
+      required: [
+        function () {
+          return this.isGuest;
+        },
+        "Guest ID is required for guest users",
+      ],
     },
   },
   { timestamps: true }

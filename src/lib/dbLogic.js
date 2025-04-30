@@ -1,5 +1,19 @@
 import axios from "axios";
 
+// Function to register a new user.
+export async function registerUser(username, email, password) {
+  try {
+    const response = await axios.post("/api/register", {
+      username,
+      email,
+      password,
+    });
+    return response;
+  } catch (error) {
+    console.error("Error registering user:", error);
+  }
+}
+
 // Function to save a score to the database.
 export async function saveScore(score) {
   try {
