@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { registerUser } from "@/lib/dbLogic";
-import axios from "axios";
 import Image from "next/image";
 import Loader from "./Loader";
 
@@ -125,7 +124,7 @@ export default function RegisterForm() {
             Already have an account?
             <ul>
               <li className="mt-2">
-                <Link href={"/"} className="underline">
+                <Link href={"/login"} className="underline">
                   Login
                 </Link>
               </li>
