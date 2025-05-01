@@ -36,21 +36,6 @@ const userSchema = new mongoose.Schema(
         "Password is required for registered users",
       ],
     },
-    isGuest: {
-      type: Boolean,
-      default: false,
-    },
-    guestId: {
-      type: String,
-      unique: true,
-      sparse: true, // Allows null for registered users
-      required: [
-        function () {
-          return this.isGuest;
-        },
-        "Guest ID is required for guest users",
-      ],
-    },
   },
   { timestamps: true }
 );
