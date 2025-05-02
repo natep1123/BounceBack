@@ -1,7 +1,23 @@
 import Image from "next/image";
-import Link from "next/link";
+import HeaderLinks from "@/components/HeaderLinks";
+import { auth } from "@/auth";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
-export default function HomePage() {
+export default async function HomePage() {
+  // Auth check
+  const session = await auth();
+  let guestId = null;
+  if (!session) {
+    const cookieStore = await cookies();
+    guestId = cookieStore.get("guestId")?.value;
+  }
+
+  // Redirect users and guests
+  if (session || guestId) {
+    redirect("/game");
+  }
+
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-900">
       <Image
@@ -18,26 +34,7 @@ export default function HomePage() {
         Join the fun! Log in to save your progress, register for an account, or
         play as a guest.
       </p>
-      <div className="flex flex-col gap-4">
-        <Link
-          href="/login"
-          className="bg-pink-600 text-white font-bold rounded-md px-6 py-3 text-center"
-        >
-          Login
-        </Link>
-        <Link
-          href="/register"
-          className="bg-gray-700 text-white font-bold rounded-md px-6 py-3 text-center"
-        >
-          Register
-        </Link>
-        <Link
-          href="/game"
-          className="bg-purple-600 text-white font-bold rounded-md px-6 py-3 text-center"
-        >
-          Play as Guest
-        </Link>
-      </div>
+      <HeaderLinks />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import Navbar from "./Navbar";
 
-const Header = ({ display, setGameState, setScore }) => {
+const Header = ({ display }) => {
   return (
     <header className="border-b-2 border-pink-600 text-center">
       {/* Welcome Pages */}
@@ -10,7 +10,7 @@ const Header = ({ display, setGameState, setScore }) => {
       {display === "navbar" && (
         <>
           <h1>BounceBack!</h1>
-          <Navbar setGameState={setGameState} setScore={setScore} />
+          <Navbar />
         </>
       )}
     </header>

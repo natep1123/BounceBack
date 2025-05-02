@@ -5,14 +5,16 @@ import { getHighscores } from "@/lib/dbLogic";
 import FinalScoreCard from "./FinalScoreCard";
 import HighScoresCard from "../HighScoresCard";
 import { useState, useEffect } from "react";
+import { useAuthContext } from "@/app/contexts/AuthContext";
+import Link from "next/link";
 
-export default function OverScreen({ setGameState, score, setScore, isGuest }) {
+export default function OverScreen({ setGameState, score }) {
   const [timeLeft, setTimeLeft] = useState(120); // 2 minutes
+  const { isGuest } = useAuthContext();
 
   // Handle button click to reset game state, score, and timer
   function handleClick() {
     setGameState("play");
-    setScore(0);
     setTimeLeft(120);
   }
 
@@ -24,7 +26,6 @@ export default function OverScreen({ setGameState, score, setScore, isGuest }) {
           //Reset when timer reaches 0
           clearInterval(timer);
           setGameState("start");
-          setScore(0);
           return 120;
         }
         return prevTime - 1;
@@ -33,7 +34,7 @@ export default function OverScreen({ setGameState, score, setScore, isGuest }) {
 
     // Cleanup
     return () => clearInterval(timer);
-  }, [setGameState, setScore]);
+  }, [setGameState]);
 
   const [highscores, setHighscores] = useState(null);
 
@@ -54,11 +55,7 @@ export default function OverScreen({ setGameState, score, setScore, isGuest }) {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      <Header
-        display="navbar"
-        setGameState={setGameState}
-        setScore={setScore}
-      />
+      <Header display="navbar" />
       <main className="flex flex-col items-center min-h-[calc(100vh-4rem)] px-4 mb-2">
         <h2>Game Over!</h2>
         <button
@@ -78,9 +75,17 @@ export default function OverScreen({ setGameState, score, setScore, isGuest }) {
         {/* Highscores Display for Guests */}
         {isGuest && (
           <div className="space-y-4 text-center">
-            <div className="flex items-center bg-gray-700 rounded-md p-3">
+            <div className="flex items-center bg-gray-700 rounded-md p-3 w-full max-w-md">
               <span className="text-lg font-medium text-white">
-                Create an account to save scores!
+                You're currently playing as a guest.{" "}
+                <Link
+                  href="/register"
+                  className="text-orange-300 font-semibold hover:underline"
+                >
+                  Register
+                </Link>{" "}
+                to save your current scores. Logging out will delete your guest
+                account and associated data.
               </span>
             </div>
           </div>

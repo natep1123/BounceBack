@@ -1,18 +1,23 @@
 import { NextResponse } from "next/server";
 import Score from "@/models/Score";
 import { auth } from "@/auth";
+import { cookies } from "next/headers";
 import { connectDB } from "@/lib/db";
 
 // This function handles saving a score for a user.
 export async function POST(request) {
   try {
-    // Get user ID from session
+    // Get user ID from session or cookie
     const session = await auth();
-    if (!session || !session.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (!session) {
+      const cookieStore = await cookies();
+      const guestId = cookieStore.get("guestId")?.value || null;
+      if (!guestId) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
     }
-    const userId = session.user.id;
 
+    // Connect to the database
     await connectDB();
 
     // Get the score from the request body

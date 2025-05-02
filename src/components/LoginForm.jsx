@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { createGuestUser } from "@/lib/dbLogic";
 import Image from "next/image";
 import Loader from "./Loader";
 
@@ -50,6 +51,20 @@ export default function LoginForm() {
     setLoading(true);
     setError("");
     await signIn("github", { callbackUrl: "/game" });
+  };
+
+  const handleGuestLogin = async () => {
+    setLoading(true);
+    setError("");
+    try {
+      await createGuestUser();
+      router.push("/game");
+    } catch (error) {
+      console.error("Error creating guest user:", error);
+      setError("Failed to create guest user.");
+      setLoading(false);
+      return;
+    }
   };
 
   return (
@@ -110,22 +125,25 @@ export default function LoginForm() {
               {error}
             </div>
           )}
-          <div className="text-center text-orange-300">
-            <span className="test-white">Don't have an account?</span>
-            <ul>
-              <li className="mt-2">
-                <Link href={"/register"} className="underline text-orange-300">
-                  Register
-                </Link>
-              </li>
-              <li className="mt-2">
-                <Link href={"/game"} className="underline text-orange-300">
-                  Play as Guest
-                </Link>
-              </li>
-            </ul>
-          </div>
         </form>
+        <div className="text-center text-orange-300 mt-2">
+          <span className="test-white">Don't have an account?</span>
+          <ul>
+            <li className="mt-2">
+              <Link href={"/register"} className="underline text-orange-300">
+                Register
+              </Link>
+            </li>
+            <li className="mt-2">
+              <button
+                onClick={handleGuestLogin}
+                className="underline text-orange-300 cursor-pointer"
+              >
+                Play as Guest
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );

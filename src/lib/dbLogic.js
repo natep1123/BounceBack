@@ -11,6 +11,40 @@ export async function registerUser(username, email, password) {
     return response;
   } catch (error) {
     console.error("Error registering user:", error);
+    throw error;
+  }
+}
+
+// Function to create a guest user
+export async function createGuestUser() {
+  try {
+    const response = await axios.post("/api/guest");
+    return response.data.message;
+  } catch (error) {
+    console.error("Error creating guest user:", error);
+    throw error;
+  }
+}
+
+// Function to check a guest
+export async function checkGuest() {
+  try {
+    const response = await axios.get("/api/check-guest");
+    return response.data.guestId;
+  } catch (error) {
+    console.error("Error checking guest:", error);
+    throw error;
+  }
+}
+
+// Function to check a guest
+export async function logoutGuest() {
+  try {
+    const response = await axios.get("/api/logout-guest");
+    return response.data.message;
+  } catch (error) {
+    console.error("Error logging out guest:", error);
+    throw error;
   }
 }
 
@@ -21,6 +55,17 @@ export async function saveScore(score) {
     return response.data.message;
   } catch (error) {
     console.error("Error saving score:", error);
+  }
+}
+
+// Function to save a score for guest users.
+export async function saveGuestScore(score) {
+  try {
+    const response = await axios.post("/api/guest-score", { score });
+    return response.data.message;
+  } catch (error) {
+    console.error("Error saving guest score:", error);
+    throw error;
   }
 }
 

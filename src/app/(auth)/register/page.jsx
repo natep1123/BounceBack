@@ -1,6 +1,7 @@
 import RegisterForm from "../../../components/RegisterForm";
 import { auth } from "@/auth";
 import Header from "@/components/Header";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export default async function RegisterPage() {
@@ -9,11 +10,14 @@ export default async function RegisterPage() {
   if (session) {
     redirect("/game");
   }
+  const cookieStore = await cookies();
+  const guestId = cookieStore.get("guestId")?.value || null;
+
   return (
     <>
       <Header display="welcome" />
       <main className="p-4">
-        <RegisterForm />
+        <RegisterForm guestId={guestId} />
       </main>
     </>
   );

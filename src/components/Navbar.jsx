@@ -3,27 +3,26 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
+import { checkGuest, logoutGuest } from "@/lib/dbLogic";
 
-export default function NavBar({ setGameState, setScore }) {
+export default function NavBar() {
   const router = useRouter();
 
   /* NextAuth v5's signOut with callbackUrl="/" failed to redirect, causing the browser to spin in refresh. Using redirect: false and manual router.push("/") resolved the issue. */
   const handleLogout = async () => {
+    const guestId = await checkGuest();
     try {
-      await signOut({ redirect: false });
+      if (guestId) {
+        await logoutGuest();
+      } else {
+        // If user, sign out
+        await signOut({ redirect: false });
+      }
+      // Redirect to home
       router.push("/");
     } catch (error) {
       console.error("Logout error:", error);
     }
-  };
-
-  // Adds functionality to return to start screen from over screen by clicking 'start' nav link.
-  const handleStartClick = () => {
-    if (setGameState && setScore) {
-      // Functionss will only exist if clicking 'start' from OverScreen.
-      setGameState("start");
-      setScore(0);
-    } else return;
   };
 
   return (
@@ -48,7 +47,6 @@ export default function NavBar({ setGameState, setScore }) {
               src="logo.png"
               alt="Start"
               className="h-10 w-auto object-contain"
-              onClick={() => handleStartClick()}
             />
           </Link>
         </li>
