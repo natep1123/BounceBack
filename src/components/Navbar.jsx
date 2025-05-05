@@ -8,11 +8,11 @@ import { checkGuest, logoutGuest } from "@/lib/dbLogic";
 export default function NavBar() {
   const router = useRouter();
 
-  /* NextAuth v5's signOut with callbackUrl="/" failed to redirect, causing the browser to spin in refresh. Using redirect: false and manual router.push("/") resolved the issue. */
   const handleLogout = async () => {
-    const guestId = await checkGuest();
+    const response = await checkGuest(); // Returns string "true" or "false"
+    const isGuest = response === "true"; // Convert to boolean
     try {
-      if (guestId) {
+      if (isGuest) {
         await logoutGuest();
       } else {
         // If user, sign out

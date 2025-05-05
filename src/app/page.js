@@ -19,7 +19,7 @@ export default async function HomePage() {
   }
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-900">
+    <div className="flex flex-col items-center min-h-screen bg-gray-900 p-4">
       <Image
         src="/logo.png"
         alt="Logo"

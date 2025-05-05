@@ -30,7 +30,7 @@ export async function createGuestUser() {
 export async function checkGuest() {
   try {
     const response = await axios.get("/api/check-guest");
-    return response.data.guestId;
+    return response.data.message;
   } catch (error) {
     console.error("Error checking guest:", error);
     throw error;

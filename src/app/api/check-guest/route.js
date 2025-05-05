@@ -6,12 +6,12 @@ export async function GET() {
   const guestId = cookieStore.get("guestId")?.value || null;
 
   if (!guestId) {
-    return new Response(JSON.stringify({ message: "No guest ID found." }), {
-      status: 404,
+    return new Response(JSON.stringify({ message: "false" }), {
+      status: 200,
     });
   }
 
-  return new Response(JSON.stringify({ message: "Guest exists.", guestId }), {
+  return new Response(JSON.stringify({ message: "true" }), {
     status: 200,
   });
 }
