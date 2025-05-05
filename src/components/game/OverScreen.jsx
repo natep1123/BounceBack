@@ -2,8 +2,8 @@
 
 import { getHighscores } from "@/lib/dbLogic";
 import { useState, useEffect } from "react";
-import { useAuthContext } from "@/app/contexts/AuthContext";
-import { useGameContext } from "@/app/contexts/GameContext";
+import { useAuthContext } from "@/contexts/AuthContext";
+import { useGameContext } from "@/contexts/GameContext";
 import Link from "next/link";
 import FinalScoreCard from "./FinalScoreCard";
 import HighScoresCard from "../HighScoresCard";

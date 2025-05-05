@@ -46,7 +46,7 @@ export default function AboutDevCard({ setAboutState }) {
         </div>
       </div>
       <a
-        className="mt-4 text-orange-400 font-medium cursor-pointer"
+        className="mt-4 text-orange-400 font-medium cursor-pointer hover:underline"
         onClick={() => setAboutState("game")}
       >
         About the Game

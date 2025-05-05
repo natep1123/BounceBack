@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
 import { checkGuest, logoutGuest } from "@/lib/dbLogic";
-import { useGameContext } from "@/app/contexts/GameContext";
+import { useGameContext } from "@/contexts/GameContext";
 
 export default function NavBar() {
   const router = useRouter();
@@ -36,14 +36,17 @@ export default function NavBar() {
     <nav className="py-2 border-t-2 border-pink-600">
       <ul className="flex items-center justify-between w-full">
         <li className="flex-1 text-center">
-          <Link href="/profile" className="text-orange-300 inline-block px-2">
+          <Link
+            href="/profile"
+            className="text-orange-300 inline-block px-2 hover:underline"
+          >
             Profile
           </Link>
         </li>
         <li className="flex-1 text-center">
           <Link
             href="/leaderboard"
-            className="text-orange-300 inline-block px-2"
+            className="text-orange-300 inline-block px-2 hover:underline"
           >
             Leaderboard
           </Link>
@@ -62,14 +65,17 @@ export default function NavBar() {
           </Link>
         </li>
         <li className="flex-1 text-center">
-          <Link href="/about" className="text-orange-300 inline-block px-2">
+          <Link
+            href="/about"
+            className="text-orange-300 inline-block px-2 hover:underline"
+          >
             About
           </Link>
         </li>
         <li className="flex-1 text-center">
           <button
             onClick={handleLogout}
-            className="text-orange-300 cursor-pointer inline-block px-2"
+            className="text-orange-300 cursor-pointer inline-block px-2 hover:underline"
           >
             Logout
           </button>

@@ -1,6 +1,6 @@
 import ClientGame from "./ClientGame";
 import { useEffect } from "react";
-import { useGameContext } from "@/app/contexts/GameContext";
+import { useGameContext } from "@/contexts/GameContext";
 
 export default function PlayScreen() {
   const { setScore } = useGameContext();

@@ -2,8 +2,8 @@
 
 import { saveScore, saveGuestScore } from "@/lib/dbLogic";
 import { useEffect, useRef, useState } from "react";
-import { useAuthContext } from "@/app/contexts/AuthContext";
-import { useGameContext } from "@/app/contexts/GameContext";
+import { useAuthContext } from "@/contexts/AuthContext";
+import { useGameContext } from "@/contexts/GameContext";
 
 // This component handles the client-side game logic for a single-player pong-like game.
 export default function ClientGame() {

@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import Game from "@/components/game/Game";
-import { AuthProvider } from "../../contexts/AuthContext";
+import { AuthProvider } from "../../../contexts/AuthContext";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 

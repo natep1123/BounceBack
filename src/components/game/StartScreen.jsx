@@ -1,6 +1,6 @@
 import BallAnimation from "./BallAnimation";
-import { useAuthContext } from "@/app/contexts/AuthContext";
-import { useGameContext } from "@/app/contexts/GameContext";
+import { useAuthContext } from "@/contexts/AuthContext";
+import { useGameContext } from "@/contexts/GameContext";
 import { useEffect } from "react";
 
 export default function StartScreen() {

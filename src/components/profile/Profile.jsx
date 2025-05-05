@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { getHighscores } from "@/lib/dbLogic";
-import { useAuthContext } from "@/app/contexts/AuthContext";
+import { useAuthContext } from "@/contexts/AuthContext";
 import Link from "next/link";
 import UserInfoCard from "./UserInfoCard";
 import HighScoresCard from "../HighScoresCard";

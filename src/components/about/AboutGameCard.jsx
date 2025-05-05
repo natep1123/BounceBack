@@ -23,7 +23,7 @@ export default function AboutGameCard({ setAboutState }) {
         </div>
       </div>
       <a
-        className="mt-4 text-orange-400 font-medium cursor-pointer"
+        className="mt-4 text-orange-400 font-medium cursor-pointer hover:underline"
         onClick={() => setAboutState("dev")}
       >
         About the Developer

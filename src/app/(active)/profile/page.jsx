@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { cookies } from "next/headers";
-import { AuthProvider } from "../../contexts/AuthContext";
+import { AuthProvider } from "../../../contexts/AuthContext";
 import Profile from "@/components/profile/Profile";
 
 export default async function ProfilePage() {

@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useGameContext } from "@/app/contexts/GameContext";
+import { useGameContext } from "@/contexts/GameContext";
 import Navbar from "./Navbar";
 
 const Header = () => {

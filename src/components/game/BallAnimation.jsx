@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useGameContext } from "@/app/contexts/GameContext";
+import { useGameContext } from "@/contexts/GameContext";
 
 // This component animates a ball bouncing around a box.
 export default function BallAnimation() {

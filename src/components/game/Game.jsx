@@ -1,6 +1,6 @@
 "use client";
 
-import { useGameContext } from "@/app/contexts/GameContext";
+import { useGameContext } from "@/contexts/GameContext";
 import StartScreen from "./StartScreen";
 import PlayScreen from "./PlayScreen";
 import OverScreen from "./OverScreen";
