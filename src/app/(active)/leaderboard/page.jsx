@@ -1,10 +1,22 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
+import { cookies } from "next/headers";
 import Header from "@/components/Header";
 import LeaderboardCard from "@/components/LeaderboardCard";
 
 export default async function LeaderboardPage() {
-  // No auth, so guests can access
+  // Auth check
+  const session = await auth();
+  if (!session) {
+    // If no session, check for guest ID cookie
+    const cookieStore = await cookies();
+    const guestId = cookieStore.get("guestId")?.value;
+
+    if (!guestId) {
+      redirect("/");
+    }
+  }
+
   return (
     <>
       <Header display="navbar" />
