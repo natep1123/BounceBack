@@ -4,19 +4,20 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export default async function RegisterPage() {
-  // Auth check
+  // Auth check for only loggin-in users; guests can promote to users
   const session = await auth();
+  let isGuest = false;
   if (session) {
     redirect("/game");
+  } else {
+    const cookieStore = cookies();
+    const guestId = cookieStore.get("guestId")?.value || null;
+    isGuest = guestId ? true : false;
   }
-  const cookieStore = await cookies();
-  const guestId = cookieStore.get("guestId")?.value || null;
 
   return (
-    <>
-      <main className="p-4">
-        <RegisterForm guestId={guestId} />
-      </main>
-    </>
+    <main className="p-4">
+      <RegisterForm isGuest={isGuest} />
+    </main>
   );
 }

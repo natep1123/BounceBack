@@ -15,6 +15,21 @@ export async function registerUser(username, email, password) {
   }
 }
 
+// Function to promote a guest user to a registered user.
+export async function promoteGuestUser(username, email, password) {
+  try {
+    const response = await axios.post("/api/promote-guest", {
+      username,
+      email,
+      password,
+    });
+    return response;
+  } catch (error) {
+    console.error("Error promoting guest user:", error);
+    throw error;
+  }
+}
+
 // Function to create a guest user
 export async function createGuestUser() {
   try {

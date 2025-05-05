@@ -18,10 +18,8 @@ export default async function LoginPage() {
   }
 
   return (
-    <>
-      <main className="p-4">
-        <LoginForm />
-      </main>
-    </>
+    <main className="p-4">
+      <LoginForm />
+    </main>
   );
 }

@@ -38,18 +38,21 @@ export default function Profile() {
           <h2 className="text-3xl font-bold text-yellow-400 mb-4">
             Guest Profile
           </h2>
+          <span className="text-gray-200 text-lg font-semibold">
+            You are currently using a guest account.
+          </span>
           <p className="text-gray-200 text-lg">
-            You are currently using a guest account. Please{" "}
+            Please{" "}
             <Link
               href="/register"
               className="text-orange-300 font-semibold hover:underline"
             >
               register
             </Link>{" "}
-            to save your current scores. Logging out will delete your guest
-            account and associated data.
+            to save your current scores.{" "}
           </p>
-          <p className="text-gray-200 text-lg">
+
+          <p className="text-gray-200 text-lg mb-4">
             Otherwise, return to{" "}
             <Link
               href="/game"
@@ -59,6 +62,10 @@ export default function Profile() {
             </Link>
             .
           </p>
+          <span className="text-gray-200 text-lg text-sm">
+            NOTE: Logging out will delete your guest account and associated
+            data.
+          </span>
         </div>
       </div>
     );

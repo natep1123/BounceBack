@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { registerUser } from "@/lib/dbLogic";
+import { registerUser, promoteGuestUser } from "@/lib/dbLogic";
 import Image from "next/image";
 import Loader from "./Loader";
 
-export default function RegisterForm() {
+export default function RegisterForm({ isGuest }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,18 +46,30 @@ export default function RegisterForm() {
       return;
     }
 
-    // API call
+    // API Call
     try {
-      const response = await registerUser(
-        trimmedUsername,
-        trimmedEmail,
-        trimmedPassword
-      );
+      let response;
+      // New User
+      if (!isGuest) {
+        response = await registerUser(
+          trimmedUsername,
+          trimmedEmail,
+          trimmedPassword
+        );
+      }
+      // Promote Guest User
+      if (isGuest) {
+        response = await promoteGuestUser(
+          trimmedUsername,
+          trimmedEmail,
+          trimmedPassword
+        );
+      }
 
       if (response.status === 201) {
         const form = e.target;
         form.reset();
-        router.push("/");
+        router.push("/login");
       } else {
         setError(response.data?.message || "Registration failed.");
         setLoading(false);
