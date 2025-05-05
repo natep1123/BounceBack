@@ -4,9 +4,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
 import { checkGuest, logoutGuest } from "@/lib/dbLogic";
+import { useGameContext } from "@/app/contexts/GameContext";
 
 export default function NavBar() {
   const router = useRouter();
+  const { setGameState } = useGameContext();
 
   const handleLogout = async () => {
     const response = await checkGuest(); // Returns string "true" or "false"
@@ -23,6 +25,11 @@ export default function NavBar() {
     } catch (error) {
       console.error("Logout error:", error);
     }
+  };
+
+  // Allow user to return to start screen from over-screen and prevents return to over-screen after exiting
+  const handleStartClick = () => {
+    setGameState("start");
   };
 
   return (
@@ -42,7 +49,11 @@ export default function NavBar() {
           </Link>
         </li>
         <li className="flex-1 text-center">
-          <Link href="/game" className="flex items-center justify-center">
+          <Link
+            href="/game"
+            onClick={handleStartClick}
+            className="flex items-center justify-center"
+          >
             <img
               src="logo.png"
               alt="Start"

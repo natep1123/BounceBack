@@ -1,35 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useGameContext } from "@/app/contexts/GameContext";
 import StartScreen from "./StartScreen";
 import PlayScreen from "./PlayScreen";
 import OverScreen from "./OverScreen";
 
-// This component manages score & game states and renders the appropriate screen.
+// This component renders the appropriate screen based on gameState.
 export default function Game() {
-  const [gameState, setGameState] = useState("start");
-  const [score, setScore] = useState(0);
+  const { gameState } = useGameContext();
 
   return (
     <>
       {/* Start Screen */}
-      {gameState === "start" && (
-        <StartScreen setGameState={setGameState} setScore={setScore} />
-      )}
+      {gameState === "start" && <StartScreen />}
 
       {/* Play Screen */}
-      {gameState === "play" && (
-        <PlayScreen
-          setGameState={setGameState}
-          score={score}
-          setScore={setScore}
-        />
-      )}
+      {gameState === "play" && <PlayScreen />}
 
       {/* Over Screen */}
-      {gameState === "over" && (
-        <OverScreen setGameState={setGameState} score={score} />
-      )}
+      {gameState === "over" && <OverScreen />}
     </>
   );
 }

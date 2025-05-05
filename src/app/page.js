@@ -27,12 +27,10 @@ export default async function HomePage() {
         width={517}
         className="h-32 w-auto mt-8 mb-6"
       />
-      <h2 className="text-4xl font-bold text-gray-200 mb-4">
-        Welcome to the Game!
-      </h2>
+      <h2 className="text-4xl font-bold text-gray-200 mb-4">Join the Fun!</h2>
       <p className="text-lg text-gray-400 mb-8 text-center max-w-md">
-        Join the fun! Log in to save your progress, register for an account, or
-        play as a guest.
+        Log in to save your progress, register for an account, or play as a
+        guest.
       </p>
       <HeaderLinks />
     </div>

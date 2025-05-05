@@ -1,20 +1,40 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+import { useGameContext } from "@/app/contexts/GameContext";
 import Navbar from "./Navbar";
 
-const Header = ({ display }) => {
-  return (
-    <header className="border-b-2 border-pink-600 text-center">
-      {/* Welcome Pages */}
-      {display === "welcome" && <h1>Welcome to BounceBack!</h1>}
+const Header = () => {
+  const pathname = usePathname();
+  const { gameState } = useGameContext();
+  const welcomePages = ["/", "/login", "/register"];
+  const navbarPages = ["/profile", "/leaderboard", "/game", "/about"];
 
-      {/* Navbar-Included Pages */}
-      {display === "navbar" && (
-        <>
-          <h1>BounceBack!</h1>
-          <Navbar />
-        </>
-      )}
-    </header>
-  );
+  // Prevent header display during game play
+  if (pathname === "/game" && gameState === "play") {
+    return null;
+  }
+
+  // Welcome Display
+  if (welcomePages.includes(pathname)) {
+    return (
+      <header className="border-b-2 border-pink-600 text-center">
+        <h1>Welcome to BounceBack!</h1>
+      </header>
+    );
+  }
+
+  // Navbar Display
+  if (navbarPages.includes(pathname)) {
+    return (
+      <header className="border-b-2 border-pink-600 text-center">
+        <h1>BounceBack!</h1>
+        <Navbar />
+      </header>
+    );
+  }
+
+  return null; // Fallback if no conditions match
 };
 
 export default Header;

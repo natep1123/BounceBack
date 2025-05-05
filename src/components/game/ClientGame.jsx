@@ -3,9 +3,13 @@
 import { saveScore, saveGuestScore } from "@/lib/dbLogic";
 import { useEffect, useRef, useState } from "react";
 import { useAuthContext } from "@/app/contexts/AuthContext";
+import { useGameContext } from "@/app/contexts/GameContext";
 
 // This component handles the client-side game logic for a single-player pong-like game.
-export default function ClientGame({ setGameState, score, setScore }) {
+export default function ClientGame() {
+  const { isGuest } = useAuthContext();
+  const { setGameState, score, setScore } = useGameContext();
+
   const [count, setCount] = useState(3);
   const [isGameStarted, setIsGameStarted] = useState(false);
   const ballSize = 10;
@@ -23,7 +27,6 @@ export default function ClientGame({ setGameState, score, setScore }) {
   const lastUpdateTime = useRef(0);
   const animationFrameId = useRef(0);
   const isDragging = useRef({ left: false, right: false });
-  const { isGuest } = useAuthContext();
 
   // Countdown effect
   useEffect(() => {

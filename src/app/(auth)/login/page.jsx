@@ -1,5 +1,4 @@
 import LoginForm from "../../../components/LoginForm";
-import Header from "../../../components/Header";
 import { auth } from "../../../auth";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -20,7 +19,6 @@ export default async function LoginPage() {
 
   return (
     <>
-      <Header display="welcome" />
       <main className="p-4">
         <LoginForm />
       </main>

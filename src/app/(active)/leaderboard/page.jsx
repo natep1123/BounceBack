@@ -1,7 +1,6 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { cookies } from "next/headers";
-import Header from "@/components/Header";
 import LeaderboardCard from "@/components/LeaderboardCard";
 
 export default async function LeaderboardPage() {
@@ -19,7 +18,6 @@ export default async function LeaderboardPage() {
 
   return (
     <>
-      <Header display="navbar" />
       <main className="flex flex-col items-center p-4">
         <h2>Leaderboard</h2>
         <LeaderboardCard />

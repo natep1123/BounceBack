@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { getHighscores } from "@/lib/dbLogic";
 import { useAuthContext } from "@/app/contexts/AuthContext";
 import Link from "next/link";
-import Header from "../Header";
 import UserInfoCard from "./UserInfoCard";
 import HighScoresCard from "../HighScoresCard";
 import DeleteButton from "./DeleteButton";
@@ -34,7 +33,7 @@ export default function Profile() {
 
   if (isGuest) {
     return (
-      <div className="grid place-items-center h-screen bg-gray-900">
+      <div className="grid place-items-center h-screen bg-gray-900 p-4">
         <div className="text-center p-6 rounded-xl bg-gray-800 border-t-4 border-yellow-400 shadow-xl">
           <h2 className="text-3xl font-bold text-yellow-400 mb-4">
             Guest Profile
@@ -67,7 +66,7 @@ export default function Profile() {
 
   if (isDeleted) {
     return (
-      <div className="grid place-items-center h-screen bg-gray-900">
+      <div className="grid place-items-center h-screen bg-gray-900 p-4">
         <div className="text-center p-6 rounded-xl bg-gray-800 border-t-4 border-red-400 shadow-xl">
           <h2 className="text-3xl font-bold text-red-400 mb-4">
             Account Deleted
@@ -83,7 +82,6 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white text-center">
-      <Header display="navbar" />
       <main className="flex flex-col items-center min-h-[calc(100vh-4rem)] p-4">
         <h2>{username}'s Profile</h2>
         <UserInfoCard username={username} email={email} />

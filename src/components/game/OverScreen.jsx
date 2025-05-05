@@ -1,16 +1,17 @@
 "use client";
 
-import Header from "@/components/Header";
 import { getHighscores } from "@/lib/dbLogic";
-import FinalScoreCard from "./FinalScoreCard";
-import HighScoresCard from "../HighScoresCard";
 import { useState, useEffect } from "react";
 import { useAuthContext } from "@/app/contexts/AuthContext";
+import { useGameContext } from "@/app/contexts/GameContext";
 import Link from "next/link";
+import FinalScoreCard from "./FinalScoreCard";
+import HighScoresCard from "../HighScoresCard";
 
-export default function OverScreen({ setGameState, score }) {
-  const [timeLeft, setTimeLeft] = useState(120); // 2 minutes
+export default function OverScreen() {
   const { isGuest } = useAuthContext();
+  const { setGameState, score } = useGameContext();
+  const [timeLeft, setTimeLeft] = useState(120); // 2 minutes
 
   // Handle button click to reset game state, score, and timer
   function handleClick() {
@@ -55,7 +56,6 @@ export default function OverScreen({ setGameState, score }) {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      <Header display="navbar" />
       <main className="flex flex-col items-center min-h-[calc(100vh-4rem)] px-4 mb-2">
         <h2>Game Over!</h2>
         <button

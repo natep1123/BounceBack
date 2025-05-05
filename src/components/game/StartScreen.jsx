@@ -1,10 +1,11 @@
-import Header from "@/components/Header";
 import BallAnimation from "./BallAnimation";
 import { useAuthContext } from "@/app/contexts/AuthContext";
+import { useGameContext } from "@/app/contexts/GameContext";
 import { useEffect } from "react";
 
-export default function StartScreen({ setGameState, setScore }) {
+export default function StartScreen() {
   const { username } = useAuthContext();
+  const { setScore } = useGameContext();
 
   // Reset score when starting a new game
   useEffect(() => {
@@ -13,7 +14,6 @@ export default function StartScreen({ setGameState, setScore }) {
 
   return (
     <>
-      <Header display="navbar" />
       <main className="flex flex-col items-center min-h-screen bg-gray-900 p-4">
         <h2>Start a New Game</h2>
         <span className="text-white italic text-center px-2 mb-2">
@@ -23,7 +23,7 @@ export default function StartScreen({ setGameState, setScore }) {
         <span className="text-white text-center px-2">
           Playing as: <span className="font-bold">{username}</span>
         </span>
-        <BallAnimation setGameState={setGameState} />
+        <BallAnimation />
       </main>
     </>
   );

@@ -1,6 +1,5 @@
 import RegisterForm from "../../../components/RegisterForm";
 import { auth } from "@/auth";
-import Header from "@/components/Header";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -15,7 +14,6 @@ export default async function RegisterPage() {
 
   return (
     <>
-      <Header display="welcome" />
       <main className="p-4">
         <RegisterForm guestId={guestId} />
       </main>
