@@ -92,7 +92,7 @@ export default function Profile() {
       <main className="flex flex-col items-center min-h-[calc(100vh-4rem)] p-4">
         <h2>{username}'s Profile</h2>
         <UserInfoCard username={username} email={email} />
-        <HighScoresCard highscores={highscores} />
+        <HighScoresCard />
         <DeleteButton
           loading={loading}
           setLoading={setLoading}

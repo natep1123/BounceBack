@@ -41,8 +41,6 @@ export async function POST(req) {
       );
     }
 
-    console.log("Score", score, "Guest", guestUser);
-
     // Update topScores (keep top 5)
     guestUser.topScores.push(score);
     guestUser.topScores.sort((a, b) => b - a); // Sort descending (numbers)
@@ -53,7 +51,7 @@ export async function POST(req) {
     await guestUser.save();
 
     return NextResponse.json(
-      { message: "Guest score saved successfully." },
+      { message: "Guest score saved." },
       { status: 200 }
     );
   } catch (error) {

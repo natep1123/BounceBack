@@ -37,23 +37,6 @@ export default function OverScreen() {
     return () => clearInterval(timer);
   }, [setGameState]);
 
-  const [highscores, setHighscores] = useState(null);
-
-  // Fetch highscores data
-  useEffect(() => {
-    if (isGuest) return;
-
-    const fetchData = async () => {
-      try {
-        const highscoresData = await getHighscores();
-        setHighscores(highscoresData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
-
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <main className="flex flex-col items-center min-h-[calc(100vh-4rem)] px-4 mb-2">
@@ -70,7 +53,7 @@ export default function OverScreen() {
         <FinalScoreCard finalScore={score} />
 
         {/* Highscores Display for Users*/}
-        {!isGuest && <HighScoresCard highscores={highscores} />}
+        {!isGuest && <HighScoresCard />}
 
         {/* Highscores Display for Guests */}
         {isGuest && (

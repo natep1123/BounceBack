@@ -1,6 +1,25 @@
 "use client";
 
-export default function HighScoresCard({ highscores }) {
+import { useEffect, useState } from "react";
+import { getHighscores } from "@/lib/dbLogic";
+
+export default function HighScoresCard() {
+  const [highscores, setHighscores] = useState(null);
+
+  // Fetch highscores data
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const highscoresData = await getHighscores();
+        setHighscores(highscoresData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="w-full max-w-md bg-gray-800 rounded-lg shadow-lg p-6 mb-2">
       <h3 className="text-2xl font-semibold text-center text-orange-400 mb-4">
@@ -29,8 +48,8 @@ export default function HighScoresCard({ highscores }) {
         </div>
       ) : (
         <p className="text-center text-gray-400">
-          {highscores?.scores.length === 0
-            ? "Play a game to earn a score!"
+          {highscores?.message === "Failed to retrieve highscores"
+            ? "Error!"
             : "Loading..."}
         </p>
       )}

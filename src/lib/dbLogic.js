@@ -80,7 +80,6 @@ export async function saveGuestScore(score) {
     return response.data.message;
   } catch (error) {
     console.error("Error saving guest score:", error);
-    throw error;
   }
 }
 
@@ -94,6 +93,10 @@ export async function getHighscores() {
     };
   } catch (error) {
     console.error("Error fetching high scores:", error);
+    return {
+      scores: [],
+      message: "Failed to retrieve highscores",
+    };
   }
 }
 
