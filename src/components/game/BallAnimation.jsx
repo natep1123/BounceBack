@@ -129,7 +129,7 @@ export default function BallAnimation() {
         />
       </div>
       <button
-        className="mt-4 px-4 py-2 text-white bg-pink-600 border-2 border-gray-800 rounded-lg cursor-pointer"
+        className="mt-4 px-4 py-2 text-white bg-pink-600 rounded-lg cursor-pointer"
         onClick={() => handleClick()}
       >
         Start!
