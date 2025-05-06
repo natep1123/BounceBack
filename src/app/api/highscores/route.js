@@ -17,11 +17,11 @@ export async function GET() {
 
     // Fetch top 5 scores
     const topScores = await Score.find({ user: userId })
-      .sort({ score: -1 }) // Highest score first
+      .sort({ score: -1 })
       .limit(5)
       .lean();
 
-    // Delete scores beyond the top 5
+    // Delete scores beyond the top 5 (delete scores whose ids are not in topScores)
     const scoreIdsToKeep = topScores.map((score) => score._id);
     await Score.deleteMany({
       user: userId,
