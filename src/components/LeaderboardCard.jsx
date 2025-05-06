@@ -45,7 +45,11 @@ export default function LeaderboardCard() {
           ))}
         </div>
       ) : (
-        <p className="text-center text-gray-400">Loading...</p>
+        <p className="text-center text-gray-400">
+          {leaderboard?.message === "Failed to load leaderboard"
+            ? "Error!"
+            : "Loading..."}
+        </p>
       )}
       {leaderboard?.message && (
         <p className="text-center text-gray-400 mt-4">{leaderboard.message}</p>
