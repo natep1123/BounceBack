@@ -1,6 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
-import { getHighscores } from "@/lib/dbLogic";
+import { useState } from "react";
 import { useAuthContext } from "@/contexts/AuthContext";
 import Link from "next/link";
 import UserInfoCard from "./UserInfoCard";
@@ -8,28 +7,11 @@ import HighScoresCard from "../HighScoresCard";
 import DeleteButton from "./DeleteButton";
 
 export default function Profile() {
-  const [highscores, setHighscores] = useState(null);
   const [isDeleted, setIsDeleted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const { isGuest, username, email } = useAuthContext();
-
-  // Fetch highscores data if not a guest
-  useEffect(() => {
-    if (!isGuest) {
-      const fetchData = async () => {
-        try {
-          const highscoresData = await getHighscores();
-          setHighscores(highscoresData);
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        }
-      };
-
-      fetchData();
-    }
-  }, []);
 
   if (isGuest) {
     return (

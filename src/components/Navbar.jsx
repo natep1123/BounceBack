@@ -13,6 +13,8 @@ export default function NavBar() {
   const handleLogout = async () => {
     const response = await checkGuest(); // Returns string "true" or "false"
     const isGuest = response === "true"; // Convert to boolean
+
+    // Logout
     try {
       if (isGuest) {
         await logoutGuest();
@@ -25,11 +27,6 @@ export default function NavBar() {
     } catch (error) {
       console.error("Logout error:", error);
     }
-  };
-
-  // Allow user to return to start screen from over-screen and prevents return to over-screen after exiting
-  const handleStartClick = () => {
-    setGameState("start");
   };
 
   return (
@@ -54,7 +51,7 @@ export default function NavBar() {
         <li className="flex-1 text-center">
           <Link
             href="/game"
-            onClick={handleStartClick}
+            onClick={() => setGameState("start")}
             className="flex items-center justify-center"
           >
             <img
