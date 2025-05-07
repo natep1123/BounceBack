@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 
 // This function checks if a guest ID cookie exists and returns it.
 export async function GET() {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const guestId = cookieStore.get("guestId")?.value || null;
 
   if (!guestId) {

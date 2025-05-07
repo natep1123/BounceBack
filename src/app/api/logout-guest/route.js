@@ -3,7 +3,7 @@ import GuestUser from "@/models/GuestUser";
 
 // This function logs out a guest, deleting the guest user and cookie.
 export async function GET() {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const guestId = cookieStore.get("guestId")?.value || null;
 
   if (!guestId) {
