@@ -5,6 +5,8 @@ import { getLeaderboard } from "@/lib/dbLogic";
 
 export default function LeaderboardCard({ username }) {
   const [leaderboard, setLeaderboard] = useState(null);
+  const medals = ["🥇", "🥈", "🥉"];
+  const topColors = ["text-yellow-400", "text-gray-400", "text-amber-600"];
 
   // Fetch leaderboard data on component mount
   useEffect(() => {
@@ -29,7 +31,11 @@ export default function LeaderboardCard({ username }) {
               key={index}
               className="grid grid-cols-[40px_1fr_80px_80px] items-center gap-x-2 bg-gray-700 rounded-md p-3"
             >
-              <span className="text-lg font-medium text-white">
+              <span
+                className={`text-lg font-medium ${
+                  index < 3 ? topColors[index] : "text-white"
+                }`}
+              >
                 #{index + 1}
               </span>
               <span
@@ -39,7 +45,7 @@ export default function LeaderboardCard({ username }) {
                     : "text-white"
                 }`}
               >
-                {entry.username}
+                {index < 3 ? medals[index] : null} {entry.username}
               </span>
               <span className="text-xl font-bold text-pink-400 text-right">
                 {entry.score}
