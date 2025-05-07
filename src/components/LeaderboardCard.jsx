@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { getLeaderboard } from "@/lib/dbLogic";
 
-export default function LeaderboardCard() {
+export default function LeaderboardCard({ username }) {
   const [leaderboard, setLeaderboard] = useState(null);
 
   // Fetch leaderboard data on component mount
@@ -32,7 +32,13 @@ export default function LeaderboardCard() {
               <span className="text-lg font-medium text-white">
                 #{index + 1}
               </span>
-              <span className="text-lg font-medium text-white truncate">
+              <span
+                className={`text-lg font-medium truncate ${
+                  username && entry.username === username
+                    ? "text-yellow-400"
+                    : "text-white"
+                }`}
+              >
                 {entry.username}
               </span>
               <span className="text-xl font-bold text-pink-400 text-right">

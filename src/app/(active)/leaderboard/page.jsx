@@ -6,6 +6,7 @@ import LeaderboardCard from "@/components/LeaderboardCard";
 export default async function LeaderboardPage() {
   // Auth check
   const session = await auth();
+  const username = session?.user?.username || null;
   if (!session) {
     // If no session, check for guest ID cookie
     const cookieStore = await cookies();
@@ -17,11 +18,9 @@ export default async function LeaderboardPage() {
   }
 
   return (
-    <>
-      <main className="flex flex-col items-center p-4">
-        <h2>Leaderboard</h2>
-        <LeaderboardCard />
-      </main>
-    </>
+    <main className="flex flex-col items-center p-4">
+      <h2>Leaderboard</h2>
+      <LeaderboardCard username={username} />
+    </main>
   );
 }
