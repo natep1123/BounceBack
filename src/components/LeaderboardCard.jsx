@@ -46,7 +46,7 @@ export default function LeaderboardCard() {
         </div>
       ) : (
         <p className="text-center text-gray-400">
-          {leaderboard?.message === "Failed to load leaderboard"
+          {leaderboard?.message === "Failed to retrieve leaderboard scores"
             ? "Error!"
             : "Loading..."}
         </p>
