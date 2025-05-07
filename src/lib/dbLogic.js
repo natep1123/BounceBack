@@ -11,7 +11,6 @@ export async function registerUser(username, email, password) {
     return response;
   } catch (error) {
     console.error("Error registering user:", error);
-    throw error;
   }
 }
 
@@ -26,7 +25,6 @@ export async function promoteGuestUser(username, email, password) {
     return response;
   } catch (error) {
     console.error("Error promoting guest user:", error);
-    throw error;
   }
 }
 
@@ -37,7 +35,6 @@ export async function createGuestUser() {
     return response.data.message;
   } catch (error) {
     console.error("Error creating guest user:", error);
-    throw error;
   }
 }
 
@@ -48,7 +45,6 @@ export async function checkGuest() {
     return response.data.message;
   } catch (error) {
     console.error("Error checking guest:", error);
-    throw error;
   }
 }
 
@@ -59,7 +55,6 @@ export async function logoutGuest() {
     return response.data.message;
   } catch (error) {
     console.error("Error logging out guest:", error);
-    throw error;
   }
 }
 
