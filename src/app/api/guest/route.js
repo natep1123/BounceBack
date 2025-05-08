@@ -17,7 +17,7 @@ export async function POST() {
     response.cookies.set("guestId", guestId, {
       httpOnly: false,
       secure: process.env.NODE_ENV === "production",
-      maxAge: 30 * 24 * 60 * 60, // 30 days
+      maxAge: 24 * 60 * 60, // 24 hours
       path: "/",
     });
 

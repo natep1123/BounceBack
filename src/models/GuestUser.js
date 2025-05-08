@@ -22,11 +22,11 @@ const guestUserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Pre save hook to delete non-active guests after 30 days
+// Pre save hook to delete non-active guests after 24 hours (matches cookie expiration)
 guestUserSchema.pre("save", async function (next) {
-  const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+  const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
   await this.model("GuestUser").deleteMany({
-    lastActive: { $lt: thirtyDaysAgo },
+    lastActive: { $lt: oneDayAgo },
   });
   next();
 });
