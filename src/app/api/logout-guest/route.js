@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import GuestUser from "@/models/GuestUser";
+import next from "next";
 
 // This function logs out a guest, deleting the guest user and cookie.
 export async function GET() {
@@ -12,11 +13,12 @@ export async function GET() {
     });
   }
 
-  // Delete guest user from the database
-  await GuestUser.findOneAndDelete({ guestId });
-
-  // Delete guest cookie
+  // Delete guest cookie first
   cookieStore.delete("guestId", { path: "/" });
+
+  // Delete guest user from the database if exists (not necessary due to guest expirations, but preferred)
+  const guestUser = (await GuestUser.findOne({ guestId })) || null;
+  guestUser ? await guestUser.deleteOne({ guestId }) : next();
 
   return new Response(JSON.stringify({ message: "Guest logged out" }), {
     status: 200,
