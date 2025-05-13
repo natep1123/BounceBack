@@ -28,6 +28,11 @@ export async function GET() {
       _id: { $nin: scoreIdsToKeep },
     });
 
+    // Check if scores exist
+    if (topScores.length === 0) {
+      return NextResponse.json({ message: "No scores found" }, { status: 200 });
+    }
+
     return NextResponse.json(
       {
         message: "Top scores retrieved",

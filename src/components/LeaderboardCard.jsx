@@ -5,6 +5,7 @@ import { getLeaderboard } from "@/lib/dbLogic";
 
 export default function LeaderboardCard({ username }) {
   const [leaderboard, setLeaderboard] = useState(null);
+  const [loading, setLoading] = useState(true);
   const medals = ["🥇", "🥈", "🥉"];
   const topColors = ["text-yellow-400", "text-gray-400", "text-amber-600"];
 
@@ -18,6 +19,7 @@ export default function LeaderboardCard({ username }) {
         console.error("Error fetching leaderboard:", error);
         setLeaderboard({ scores: [], message: "Failed to load leaderboard" });
       }
+      setLoading(false);
     };
     fetchLeaderboard();
   }, []);
@@ -58,9 +60,9 @@ export default function LeaderboardCard({ username }) {
         </div>
       ) : (
         <p className="text-center text-gray-400">
-          {leaderboard?.message === "Failed to retrieve leaderboard scores"
-            ? "Error!"
-            : "Loading..."}
+          {loading && "Loading..."}
+          {leaderboard?.message === "Failed to retrieve leaderboard scores" &&
+            "Error!"}
         </p>
       )}
       {leaderboard?.message && (

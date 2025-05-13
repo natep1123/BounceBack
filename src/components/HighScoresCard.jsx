@@ -5,6 +5,7 @@ import { getHighscores } from "@/lib/dbLogic";
 
 export default function HighScoresCard() {
   const [highscores, setHighscores] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // Fetch highscores data
   useEffect(() => {
@@ -15,6 +16,7 @@ export default function HighScoresCard() {
       } catch (error) {
         console.error("Error fetching data:", error);
       }
+      setLoading(false);
     };
 
     fetchData();
@@ -48,9 +50,10 @@ export default function HighScoresCard() {
         </div>
       ) : (
         <p className="text-center text-gray-400">
-          {highscores?.message === "Failed to retrieve highscores"
-            ? "Error!"
-            : "Loading..."}
+          {loading && "Loading..."}
+          {highscores?.message === "No scores found" &&
+            "Play a game to earn scores!"}
+          {highscores?.message === "Failed to retrieve highscores" && "Error!"}
         </p>
       )}
 
