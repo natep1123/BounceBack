@@ -64,8 +64,9 @@ export async function POST(req) {
         await newScore.save();
       });
     }
-    // Remove guestId cookie
-    cookieStore.delete("guestId");
+    // Delete guest cookie by setting an expired date
+    cookieStore.set("guestId", "", { expires: new Date(0), path: "/" });
+
     // Delete guest user
     await GuestUser.deleteOne({ guestId });
 

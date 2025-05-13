@@ -13,10 +13,10 @@ export async function GET() {
     });
   }
 
-  // Delete guest cookie first
-  cookieStore.delete("guestId", { path: "/" });
+  // Delete guest cookie by setting an expired date
+  cookieStore.set("guestId", "", { expires: new Date(0), path: "/" });
 
-  // Delete guest user from the database if exists (not necessary due to guest expirations, but preferred)
+  // Delete guest user from the database if exists
   const guestUser = (await GuestUser.findOne({ guestId })) || null;
   guestUser ? await guestUser.deleteOne({ guestId }) : next();
 
