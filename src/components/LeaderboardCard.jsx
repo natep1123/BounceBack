@@ -25,7 +25,7 @@ export default function LeaderboardCard({ username }) {
   }, []);
 
   return (
-    <div className="w-full max-w-md bg-gray-800 rounded-lg shadow-lg p-4">
+    <div className="w-full max-w-md bg-gray-800 rounded-lg shadow-lg shadow-pink-500/20 p-4">
       {leaderboard?.scores && leaderboard.scores.length > 0 ? (
         <div className="space-y-4">
           {leaderboard.scores.map((entry, index) => (
